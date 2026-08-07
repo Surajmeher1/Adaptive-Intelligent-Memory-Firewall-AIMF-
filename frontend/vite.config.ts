@@ -5,9 +5,9 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // GitHub Pages serves the app under /repo-name/ — set base accordingly.
-  // Override with VITE_BASE=/ for Vercel or custom domains.
-  base: process.env.VITE_BASE ?? '/Adaptive-Intelligent-Memory-Firewall-AIMF-/',
+  // GitHub Pages serves the app under /repo-name/ — this is overridden in deploy.yml
+  // Default to '/' for Vercel, Netlify, and custom domains.
+  base: process.env.VITE_BASE ?? '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
