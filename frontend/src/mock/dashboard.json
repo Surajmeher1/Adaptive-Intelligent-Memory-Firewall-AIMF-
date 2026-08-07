@@ -1,0 +1,36 @@
+{
+  "stats": {
+    "total_memories": 1847,
+    "active_memories": 1204,
+    "encrypted_memories": 312,
+    "forgotten_memories": 431,
+    "avg_amgs_score": 0.621,
+    "privacy_score": 0.834,
+    "storage_efficiency": 0.762,
+    "memories_today": 43
+  },
+  "decision_distribution": [
+    { "decision": "STORE",           "count": 612,  "percentage": 33.1 },
+    { "decision": "STORE_ENCRYPTED", "count": 312,  "percentage": 16.9 },
+    { "decision": "LONG_TERM",       "count": 280,  "percentage": 15.2 },
+    { "decision": "SUMMARIZE",       "count": 218,  "percentage": 11.8 },
+    { "decision": "FORGET",          "count": 293,  "percentage": 15.9 },
+    { "decision": "REJECT_PRIVACY",  "count": 132,  "percentage": 7.1  }
+  ],
+  "recent_activity": [
+    { "id": "act-001", "type": "store",     "memory_excerpt": "User prefers dark mode interfaces with minimal animations",       "timestamp": "2026-08-05T13:47:00Z", "decision": "STORE",           "amgs_score": 0.712 },
+    { "id": "act-002", "type": "encrypt",   "memory_excerpt": "Credit card ending in 4832 linked to primary account",           "timestamp": "2026-08-05T13:39:00Z", "decision": "STORE_ENCRYPTED", "amgs_score": 0.881 },
+    { "id": "act-003", "type": "forget",    "memory_excerpt": "Meeting scheduled for Tuesday at 3pm with design team",           "timestamp": "2026-08-05T13:22:00Z", "decision": "FORGET",          "amgs_score": 0.124 },
+    { "id": "act-004", "type": "store",     "memory_excerpt": "Prefers Python over JavaScript for backend development tasks",     "timestamp": "2026-08-05T12:58:00Z", "decision": "LONG_TERM",       "amgs_score": 0.793 },
+    { "id": "act-005", "type": "summarize", "memory_excerpt": "Long discussion about architecture patterns in microservices",    "timestamp": "2026-08-05T12:31:00Z", "decision": "SUMMARIZE",       "amgs_score": 0.341 },
+    { "id": "act-006", "type": "encrypt",   "memory_excerpt": "Home address: 42 Sunrise Avenue, Pune, Maharashtra",             "timestamp": "2026-08-05T12:09:00Z", "decision": "STORE_ENCRYPTED", "amgs_score": 0.927 },
+    { "id": "act-007", "type": "forget",    "memory_excerpt": "Today's weather is partly cloudy with 28°C temperature",         "timestamp": "2026-08-05T11:45:00Z", "decision": "FORGET",          "amgs_score": 0.089 },
+    { "id": "act-008", "type": "store",     "memory_excerpt": "Working on B.Tech final year project on AI memory governance",   "timestamp": "2026-08-05T11:20:00Z", "decision": "STORE",           "amgs_score": 0.668 }
+  ],
+  "quick_stats_trend": {
+    "memories_vs_yesterday": 12,
+    "efficiency_vs_last_week": 3.2,
+    "privacy_events_today": 7,
+    "forgotten_today": 11
+  }
+}

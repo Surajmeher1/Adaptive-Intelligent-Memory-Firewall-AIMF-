@@ -1,0 +1,60 @@
+# AIMF Backend — Pinned Dependencies
+# Python 3.13 (updated from 3.11 — user environment)
+# Generated: 2026-07-22
+# Install: pip install -r requirements.txt
+
+# ─── Web Framework ────────────────────────────────────────────────────────────
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.12
+
+# ─── Database ─────────────────────────────────────────────────────────────────
+sqlalchemy==2.0.36
+greenlet>=3.0.0
+alembic==1.14.0
+aiosqlite==0.20.0
+asyncpg==0.30.0
+
+# ─── Configuration ────────────────────────────────────────────────────────────
+# pydantic 2.9+ ships pydantic-core with Python 3.13 pre-built wheels
+pydantic==2.10.4
+pydantic-settings==2.7.0
+python-dotenv==1.0.1
+
+# ─── Security / Cryptography ──────────────────────────────────────────────────
+cryptography==44.0.0
+
+# ─── NLP ──────────────────────────────────────────────────────────────────────
+spacy==3.8.2
+
+# ─── Embeddings ───────────────────────────────────────────────────────────────
+sentence-transformers==3.3.1
+torch==2.5.1
+transformers==4.47.1
+
+# ─── Vector Search ────────────────────────────────────────────────────────────
+faiss-cpu==1.9.0
+
+# ─── Scientific / ML ──────────────────────────────────────────────────────────
+numpy==2.1.3
+scikit-learn==1.6.0
+scipy==1.14.1
+
+# ─── Utilities ────────────────────────────────────────────────────────────────
+httpx==0.28.1
+anyio==4.7.0
+python-dateutil==2.9.0
+langdetect==1.0.9
+
+# ─── Testing ──────────────────────────────────────────────────────────────────
+pytest==8.3.4
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
+pytest-benchmark==5.1.0
+
+# ─── Authentication ───────────────────────────────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# ─── Code Quality ─────────────────────────────────────────────────────────────
+mypy==1.13.0

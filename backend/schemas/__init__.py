@@ -1,0 +1,1 @@
+"""AIMF Schemas package."""

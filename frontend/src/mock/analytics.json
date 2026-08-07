@@ -1,0 +1,47 @@
+{
+  "trends": [
+    { "date": "2026-07-30", "stored": 38, "forgotten": 14, "encrypted": 9,  "analyzed": 61 },
+    { "date": "2026-07-31", "stored": 42, "forgotten": 17, "encrypted": 11, "analyzed": 70 },
+    { "date": "2026-08-01", "stored": 35, "forgotten": 12, "encrypted": 8,  "analyzed": 55 },
+    { "date": "2026-08-02", "stored": 29, "forgotten": 9,  "encrypted": 6,  "analyzed": 44 },
+    { "date": "2026-08-03", "stored": 51, "forgotten": 19, "encrypted": 14, "analyzed": 84 },
+    { "date": "2026-08-04", "stored": 47, "forgotten": 16, "encrypted": 12, "analyzed": 75 },
+    { "date": "2026-08-05", "stored": 43, "forgotten": 11, "encrypted": 7,  "analyzed": 61 }
+  ],
+  "amgs_score_distribution": [
+    { "range": "0.0–0.1", "count": 132 },
+    { "range": "0.1–0.2", "count": 87  },
+    { "range": "0.2–0.3", "count": 104 },
+    { "range": "0.3–0.4", "count": 143 },
+    { "range": "0.4–0.5", "count": 198 },
+    { "range": "0.5–0.6", "count": 271 },
+    { "range": "0.6–0.7", "count": 312 },
+    { "range": "0.7–0.8", "count": 289 },
+    { "range": "0.8–0.9", "count": 201 },
+    { "range": "0.9–1.0", "count": 110 }
+  ],
+  "category_breakdown": [
+    { "category": "preference",   "count": 342, "pct": 18.5 },
+    { "category": "personal",     "count": 287, "pct": 15.5 },
+    { "category": "factual",      "count": 401, "pct": 21.7 },
+    { "category": "sensitive",    "count": 198, "pct": 10.7 },
+    { "category": "task",         "count": 256, "pct": 13.9 },
+    { "category": "conversation", "count": 231, "pct": 12.5 },
+    { "category": "temporal",     "count": 132, "pct": 7.2  }
+  ],
+  "sensitivity_breakdown": [
+    { "level": "none",     "count": 892, "pct": 48.3 },
+    { "level": "low",      "count": 431, "pct": 23.3 },
+    { "level": "medium",   "count": 289, "pct": 15.6 },
+    { "level": "high",     "count": 165, "pct": 8.9  },
+    { "level": "critical", "count": 70,  "pct": 3.9  }
+  ],
+  "monthly_overview": [
+    { "month": "Mar", "total": 312, "privacy_events": 28 },
+    { "month": "Apr", "total": 398, "privacy_events": 34 },
+    { "month": "May", "total": 441, "privacy_events": 41 },
+    { "month": "Jun", "total": 387, "privacy_events": 38 },
+    { "month": "Jul", "total": 503, "privacy_events": 52 },
+    { "month": "Aug", "total": 219, "privacy_events": 24 }
+  ]
+}

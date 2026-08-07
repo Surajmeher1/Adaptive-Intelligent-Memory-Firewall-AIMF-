@@ -1,0 +1,82 @@
+# AIMF — Adaptive AI Memory Firewall
+# .gitignore
+
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.pyo
+
+# ─── Virtual Environments ────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── Secrets / Environment ───────────────────────────────────────────────────
+.env
+.env.local
+.env.production
+!.env.example
+
+# ─── Database Files ──────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+aimf.db
+experiment.db
+
+# ─── FAISS Index ─────────────────────────────────────────────────────────────
+*.bin
+faiss_index.bin
+faiss_id_map.json
+
+# ─── Experiment Results ──────────────────────────────────────────────────────
+experiments/results/*.json
+experiments/results/*.csv
+experiments/datasets/*.jsonl
+experiments/datasets/*.csv
+# (keep .gitkeep files)
+!experiments/results/.gitkeep
+!experiments/datasets/.gitkeep
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+logs/
+*.log
+
+# ─── Node.js / Frontend ──────────────────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# ─── Docker ──────────────────────────────────────────────────────────────────
+.docker/
+
+# ─── IDE / Editor ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── macOS ───────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ─── spaCy / ML Models ───────────────────────────────────────────────────────
+# (models are downloaded at runtime, not committed)
+*.model
+sentence_transformers_cache/

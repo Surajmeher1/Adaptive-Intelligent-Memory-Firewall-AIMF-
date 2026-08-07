@@ -1,0 +1,56 @@
+[
+  {
+    "algorithm": "AIMF (Proposed)",
+    "precision": 0.912,
+    "recall": 0.887,
+    "f1_score": 0.899,
+    "privacy_preservation": 0.943,
+    "storage_efficiency": 0.812,
+    "latency_ms": 38
+  },
+  {
+    "algorithm": "Full Storage (Baseline)",
+    "precision": 1.000,
+    "recall": 1.000,
+    "f1_score": 1.000,
+    "privacy_preservation": 0.211,
+    "storage_efficiency": 0.100,
+    "latency_ms": 4
+  },
+  {
+    "algorithm": "LRU Eviction",
+    "precision": 0.731,
+    "recall": 0.694,
+    "f1_score": 0.712,
+    "privacy_preservation": 0.512,
+    "storage_efficiency": 0.621,
+    "latency_ms": 12
+  },
+  {
+    "algorithm": "Forget-All",
+    "precision": 0.000,
+    "recall": 0.000,
+    "f1_score": 0.000,
+    "privacy_preservation": 1.000,
+    "storage_efficiency": 1.000,
+    "latency_ms": 1
+  },
+  {
+    "algorithm": "TF-IDF Scoring",
+    "precision": 0.801,
+    "recall": 0.762,
+    "f1_score": 0.781,
+    "privacy_preservation": 0.598,
+    "storage_efficiency": 0.704,
+    "latency_ms": 21
+  },
+  {
+    "algorithm": "Semantic Similarity",
+    "precision": 0.854,
+    "recall": 0.831,
+    "f1_score": 0.842,
+    "privacy_preservation": 0.671,
+    "storage_efficiency": 0.743,
+    "latency_ms": 156
+  }
+]

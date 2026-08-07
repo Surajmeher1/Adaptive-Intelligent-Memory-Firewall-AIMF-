@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
+@theme {
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Brand Colors */
+  --color-brand-50:  #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+  --color-brand-950: #1e1b4b;
+
+  /* Cyan accent */
+  --color-accent-50:  #ecfeff;
+  --color-accent-100: #cffafe;
+  --color-accent-200: #a5f3fc;
+  --color-accent-300: #67e8f9;
+  --color-accent-400: #22d3ee;
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
+  --color-accent-800: #155e75;
+  --color-accent-900: #164e63;
+
+  /* Surface / Background */
+  --color-surface-0:   #05070d;
+  --color-surface-50:  #0a0d14;
+  --color-surface-100: #0f1219;
+  --color-surface-200: #141720;
+  --color-surface-300: #1a1e2e;
+  --color-surface-400: #212538;
+  --color-surface-500: #282d42;
+
+  /* Status Colors */
+  --color-success:  #10b981;
+  --color-warning:  #f59e0b;
+  --color-danger:   #ef4444;
+  --color-info:     #3b82f6;
+
+  /* Border radius */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-2xl:  1.25rem;
+  --radius-3xl:  1.5rem;
+
+  /* Shadows */
+  --shadow-glow-brand: 0 0 20px -5px rgba(99, 102, 241, 0.4);
+  --shadow-glow-accent: 0 0 20px -5px rgba(6, 182, 212, 0.4);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ─── Theme CSS Variables ──────────────────────────────────────────────────── */
+/* Dark theme is default; html.light overrides all tokens                       */
+:root,
+html,
+html.dark {
+  --color-bg-base:     #0a0d14;
+  --color-bg-sidebar:  #08090f;
+  --color-bg-surface:  #0f1219;
+  --color-bg-elevated: #141720;
+  --color-bg-card:     rgba(255,255,255,0.03);
+  --color-bg-card-hover: rgba(255,255,255,0.05);
+  --color-bg-input:    rgba(255,255,255,0.04);
+  --color-border:      rgba(255,255,255,0.07);
+  --color-border-hover:rgba(255,255,255,0.14);
+  --color-text-primary:   #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted:     #475569;
+  --color-text-faint:     #334155;
+  --color-header-bg:   rgba(10,13,20,0.8);
+  --color-header-border: rgba(255,255,255,0.06);
+  --color-divider:     rgba(255,255,255,0.06);
+  --color-scrollbar:   rgba(99,102,241,0.3);
+  --color-scrollbar-hover: rgba(99,102,241,0.55);
+}
+
+html.light {
+  --color-bg-base:     #f1f5f9;
+  --color-bg-sidebar:  #ffffff;
+  --color-bg-surface:  #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-card:     rgba(255,255,255,0.9);
+  --color-bg-card-hover: rgba(255,255,255,1);
+  --color-bg-input:    rgba(255,255,255,0.8);
+  --color-border:      rgba(0,0,0,0.09);
+  --color-border-hover:rgba(0,0,0,0.18);
+  --color-text-primary:   #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted:     #64748b;
+  --color-text-faint:     #94a3b8;
+  --color-header-bg:   rgba(248,250,252,0.85);
+  --color-header-border: rgba(0,0,0,0.07);
+  --color-divider:     rgba(0,0,0,0.07);
+  --color-scrollbar:   rgba(99,102,241,0.25);
+  --color-scrollbar-hover: rgba(99,102,241,0.45);
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100dvh;
+  margin: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-hover);
+}
+
+/* ─── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(99, 102, 241, 0.35);
+  color: #e0e7ff;
+}
+
+/* ─── Typography Utilities ──────────────────────────────────────────────────── */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ─── Glassmorphism Surface ─────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ─── Glow Effects ────────────────────────────────────────────────────────── */
+.glow-brand {
+  box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.5);
+}
+.glow-accent {
+  box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.5);
+}
+.glow-success {
+  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.5);
+}
+.glow-danger {
+  box-shadow: 0 0 20px -5px rgba(239, 68, 68, 0.5);
+}
+
+/* ─── Gradient Text ───────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #818cf8 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brand {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Animated Gradient Border ───────────────────────────────────────────── */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(#141720, #141720) padding-box,
+              linear-gradient(135deg, rgba(99,102,241,0.5), rgba(6,182,212,0.5)) border-box;
+  border: 1px solid transparent;
+}
+
+/* ─── Page Transition ──────────────────────────────────────────────────────── */
+.page-enter {
+  animation: pageEnter 0.3s ease forwards;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Sidebar ──────────────────────────────────────────────────────────────── */
+.sidebar {
+  width: 256px;
+  min-width: 256px;
+  background: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-divider);
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: sticky;
+  top: 0;
+}
+
+/* ─── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+}
+
+.card-hover {
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.card-hover:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  background: var(--color-bg-card-hover);
+  box-shadow: 0 0 20px -8px rgba(99, 102, 241, 0.3);
+}
+
+/* ─── Status Badge Colors ────────────────────────────────────────────────── */
+.badge-store      { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.25); }
+.badge-encrypt    { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.25); }
+.badge-forget     { background: rgba(239,68,68,0.15);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.25); }
+.badge-summarize  { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.25); }
+.badge-reject     { background: rgba(239,68,68,0.18);  color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+.badge-long-term  { background: rgba(6,182,212,0.15);  color: #67e8f9; border: 1px solid rgba(6,182,212,0.25); }
+
+/* ─── Focus Visible ──────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Skeleton Shimmer ───────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── No-Select ──────────────────────────────────────────────────────────── */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ─── Truncate with ellipsis ──────────────────────────────────────────────── */
+.truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Structural theme overrides (for hardcoded Tailwind utilities) ─────── */
+/* These cascade-fix the key layout surfaces so the theme actually works      */
+
+html.light [class*="bg-[#0a0d14]"]  { background-color: var(--color-bg-base)    !important; }
+html.light [class*="bg-[#08090f]"]  { background-color: var(--color-bg-sidebar) !important; }
+html.light [class*="bg-[#0f1219]"]  { background-color: var(--color-bg-surface) !important; }
+html.light [class*="bg-[#141720]"]  { background-color: var(--color-bg-elevated)!important; }
+
+/* Translucent white surfaces → opaque light surfaces in light mode */
+html.light [class*="bg-white/[0.02]"],
+html.light [class*="bg-white/[0.03]"],
+html.light [class*="bg-white/[0.04]"],
+html.light [class*="bg-white/[0.05]"],
+html.light [class*="bg-white/[0.06]"] {
+  background-color: rgba(255,255,255,0.7) !important;
+  backdrop-filter: none;
+}
+
+/* White translucent borders → dark borders in light mode */
+html.light [class*="border-white/[0.06]"],
+html.light [class*="border-white/[0.07]"],
+html.light [class*="border-white/[0.08]"],
+html.light [class*="border-white/[0.1]"],
+html.light [class*="border-white/[0.14]"] {
+  border-color: var(--color-border) !important;
+}
+
+/* Slate text → proper contrast in light mode */
+html.light .text-slate-400  { color: #334155 !important; }
+html.light .text-slate-500  { color: #475569 !important; }
+html.light .text-slate-600  { color: #64748b !important; }
+html.light .text-slate-300  { color: #1e293b !important; }
+html.light .text-slate-200  { color: #0f172a !important; }
+html.light .text-white      { color: #0f172a !important; }
+
+/* Sidebar, header, modals */
+html.light nav[class*="bg-[#08090f]"] { background-color: #ffffff !important; }
+html.light header { background-color: rgba(248,250,252,0.9) !important; border-bottom-color: rgba(0,0,0,0.08) !important; }
+
+/* Input fields */
+html.light input, html.light textarea, html.light select {
+  background-color: #ffffff !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  color: #0f172a !important;
+}
+html.light input::placeholder, html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Modal overlay backdrop */
+html.light [class*="bg-[#141720]"] { background-color: #f8fafc !important; }
+
+/* Skeleton shimmer in light mode */
+html.light .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.04) 0%,
+    rgba(0,0,0,0.08) 50%,
+    rgba(0,0,0,0.04) 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* ─── Custom Size Utilities (h/w 4.5 = 18px) ────────────────────────────── */
+.h-4\.5 { height: 1.125rem; }
+.w-4\.5 { width:  1.125rem; }
+
+/* ─── Range Input Styling ────────────────────────────────────────────────── */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+/* ─── Responsive Padding Helpers ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .mobile-scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+}
