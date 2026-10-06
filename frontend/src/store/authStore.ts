@@ -29,6 +29,9 @@ function extractErrorMessage(err: unknown, status?: number): string {
   if (status === 422) {
     return 'Invalid request format. Please check your email and password.'
   }
+  if (status === 405) {
+    return 'Backend API server not reached (HTTP 405 Method Not Allowed). The frontend is hosted statically without a live AIMF backend connected. Please ensure the backend is running and configured.'
+  }
   if (status && status >= 500) {
     return 'AIMF server error. Please try again.'
   }

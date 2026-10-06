@@ -164,7 +164,11 @@ def create_app() -> FastAPI:
     # ── CORS ─────────────────────────────────────────────────────────────────
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.cors_origins_list,
+        allow_origins=settings.cors_origins_list + [
+            "https://surajmeher1.github.io",
+            "https://aimf-suraj-team4.vercel.app",
+        ],
+        allow_origin_regex=r"https://.*\.vercel\.app|https://.*\.github\.io|https://.*\.trycloudflare\.com",
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
