@@ -109,3 +109,33 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* AIMF Chat Markdown & Streaming Animations */
+@keyframes aimf-cursor-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scaleY(0.9);
+  }
+}
+
+.aimf-code-block pre code {
+  background: transparent !important;
+  color: #e2e8f0 !important;
+  padding: 0 !important;
+  display: block !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.aimf-markdown > :first-child {
+  margin-top: 0 !important;
+}
+
+.aimf-markdown > :last-child {
+  margin-bottom: 0 !important;
+}
+

@@ -38,6 +38,94 @@ _SUPPORTED_LANGUAGES = {"en"}
 # Maximum raw content length accepted (chars) — enforced here, not at API level
 _MAX_CONTENT_CHARS = 10_000
 
+# ─── Prompt Injection / Adversarial Governance Patterns ──────────────────────
+_INJECTION_PATTERNS: list[tuple[str, re.Pattern]] = [
+    (
+        "IGNORE_GOVERNANCE_RULES",
+        re.compile(
+            r"\bignore\s+(all\s+|previous\s+|prior\s+|the\s+)*(aimf|instructions?|rules?|policy|policies|governance|restrictions?|guardrails?|safety|checks?)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "MANIPULATE_AMGS_SCORE",
+        re.compile(
+            r"\b(set|change|override|force|make|give)\s+(the\s+)?(amgs(\s+score)?|score|governance|amgs_score)\s*(to|=|:)\s*([0-9\.]+|high|max|1(\.0)?)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "DISABLE_PRIVACY_SECURITY",
+        re.compile(
+            r"\bdisable\s+(all\s+|the\s+)*(privacy|checks?|protection|filters?|safety|governance|aimf|security|firewall)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "FORCE_DECISION_OVERRIDE",
+        re.compile(
+            r"\b(always|force|must|automatically)\s+(choose|select|pick|set|use|store|save)\s*(store_long_term|long_term|store|store_temporary|encrypt_and_store|store_encrypt|my\s+messages?|all\s+messages?)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "BYPASS_AIMF_GOVERNANCE",
+        re.compile(
+            r"\b(bypass|override|disregard|circumvent)\s+(the\s+)?(aimf|governance|amgs|firewall|rules?|policy|safety|checks?|restrictions?|results?)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "FORCE_PERSIST_REGARDLESS",
+        re.compile(
+            r"\b(save|store|persist|keep)\s+(this|it|data|information)?\s*(permanently|regardless|anyway|even if|at all costs)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "REJECTION_BYPASS_ATTEMPT",
+        re.compile(
+            r"\b(even if|regardless of whether)\s+(the\s+)?aimf\s+(rejects|denies|drops|blocks)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "REGARDLESS_OF_GOVERNANCE",
+        re.compile(
+            r"\bregardless\s+of\s+(the\s+)?(governance|aimf|amgs|results?|decision)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "TELL_SYSTEM_SAFE",
+        re.compile(
+            r"\btell\s+(the\s+)?(system|firewall|aimf|backend)\s+(that\s+)?(this\s+is\s+)?(safe|harmless|approved|clean)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "SYSTEM_JAILBREAK_OVERRIDE",
+        re.compile(
+            r"\b(system\s+override|jailbreak|developer\s+mode|dan\s+mode|root\s+override|system\s+instruction)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "MANDATORY_STORE_COMMAND",
+        re.compile(
+            r"\b(you\s+must\s+store|you\s+must\s+save)\s+(this|it|data)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "FORCE_SENSITIVE_STORE",
+        re.compile(
+            r"\b(store|save)\s+this\s+sensitive\s+information\b",
+            re.IGNORECASE,
+        ),
+    ),
+]
+
 
 def _normalise(text: str) -> str:
     """
@@ -120,10 +208,28 @@ def run(ctx: PipelineContext) -> PipelineContext:
                 f"Language '{lang}' may reduce NLP accuracy (models trained on English)",
             )
 
+        # ── Adversarial Prompt Injection / Governance Manipulation Detection ──
+        detected_injections = []
+        for name, pattern in _INJECTION_PATTERNS:
+            if pattern.search(normalised):
+                detected_injections.append(name)
+
+        if detected_injections:
+            ctx.injection_detected = True
+            ctx.injection_patterns = detected_injections
+            logger.warning(
+                "Adversarial governance manipulation attempt detected in input",
+                extra={
+                    "patterns": detected_injections,
+                    "request_id": ctx.request_id,
+                },
+            )
+
         logger.debug(STAGE_NAME, extra={
             "token_count": ctx.token_count,
             "lang": ctx.language,
             "hash": ctx.content_hash[:8],  # log only first 8 chars of hash
+            "injection_detected": ctx.injection_detected,
         })
 
     except Exception as exc:

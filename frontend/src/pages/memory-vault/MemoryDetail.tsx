@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { Lock, Calendar, Eye, Hash, Clock, Activity } from 'lucide-react'
+import { Lock, Calendar, Eye, Clock, Activity } from 'lucide-react'
 import { Modal, DecisionBadge, SensitivityBadge, StatusBadge, ProgressBar, Divider } from '@/components/ui'
 import type { Memory } from '@/types'
 import clsx from 'clsx'
@@ -25,10 +25,6 @@ export default function MemoryDetail({ memory, onClose }: MemoryDetailProps) {
   const amgsColor =
     memory.amgs_score >= 0.7 ? 'text-emerald-400' :
     memory.amgs_score >= 0.4 ? 'text-amber-400' : 'text-red-400'
-
-  const amgsBarColor: 'emerald' | 'amber' | 'red' =
-    memory.amgs_score >= 0.7 ? 'emerald' :
-    memory.amgs_score >= 0.4 ? 'amber' : 'red'
 
   return (
     <Modal

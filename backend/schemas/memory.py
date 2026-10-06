@@ -8,7 +8,7 @@ All user inputs pass through these models before any processing (NFR-09).
 from __future__ import annotations
 
 from typing import Any
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from schemas.governance import (
     GovernanceDecision,
@@ -26,11 +26,12 @@ class MemoryAnalyzeRequest(BaseModel):
     Input for POST /api/v1/memory/analyze and /api/v1/memory/submit.
     Enforces all input constraints from FR-01.
     """
+    model_config = ConfigDict(str_strip_whitespace=True)
+
     content: str = Field(
         ...,
         min_length=1,
         max_length=1000,
-        strip_whitespace=True,
         description="Text content to analyze. 1–1000 characters.",
         examples=["My meeting with Dr. Smith is tomorrow at 3pm"],
     )
@@ -234,4 +235,6 @@ class LifecycleHistoryResponse(BaseModel):
 
 class MemoryUpdateRequest(BaseModel):
     """Request body for PUT /api/v1/memory/{id}."""
-    content: str = Field(..., min_length=1, max_length=1000, strip_whitespace=True)
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    content: str = Field(..., min_length=1, max_length=1000)

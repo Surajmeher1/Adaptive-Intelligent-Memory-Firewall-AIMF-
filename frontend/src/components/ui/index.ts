@@ -13,9 +13,11 @@ export { Skeleton, SkeletonText, SkeletonCard, SkeletonStat } from './Skeleton'
 
 export { Input, Textarea, SearchBar } from './Input'
 
-export { Modal, useModal } from './Modal'
+export { Modal } from './Modal'
+export { useModal } from './useModal'
 
-export { Tabs, useTabs, Toggle, Select } from './Tabs'
+export { Tabs, Toggle, Select } from './Tabs'
+export { useTabs } from './useTabs'
 
 export { Table, Pagination } from './Table'
 

@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
@@ -13,8 +13,10 @@ import {
   ChevronLeft,
   Activity,
   Zap,
+  LogOut,
 } from 'lucide-react'
 import { useSidebarStore } from '@/store'
+import { useAuthStore } from '@/store/authStore'
 import clsx from 'clsx'
 
 const NAV_ITEMS = [
@@ -33,8 +35,9 @@ const BOTTOM_ITEMS = [
 ]
 
 export default function Sidebar() {
+  const navigate = useNavigate()
   const { isCollapsed, isMobileOpen, toggleCollapse, closeMobile } = useSidebarStore()
-  const location = useLocation()
+  const { user, isAuthenticated, logout } = useAuthStore()
 
   return (
     <>
@@ -211,6 +214,37 @@ export default function Sidebar() {
               )}
             </NavLink>
           ))}
+
+          {/* Sign Out */}
+          {isAuthenticated && (
+            <button
+              onClick={() => {
+                closeMobile()
+                logout()
+                navigate('/login')
+              }}
+              className="group w-full flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-150 border border-transparent text-slate-400 hover:text-red-300 hover:bg-red-500/[0.08] hover:border-red-500/20 text-left"
+              title="Sign out"
+            >
+              <LogOut className="h-4 w-4 flex-shrink-0 text-slate-500 group-hover:text-red-400 transition-colors" />
+              <AnimatePresence>
+                {!isCollapsed && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="min-w-0"
+                  >
+                    <div className="text-sm font-medium leading-none">Sign Out</div>
+                    <div className="text-[10px] text-slate-600 mt-0.5 truncate">
+                      {user?.email ?? 'End session'}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          )}
 
           {/* Version tag */}
           <AnimatePresence>

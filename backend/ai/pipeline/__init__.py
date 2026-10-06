@@ -74,6 +74,10 @@ class PipelineContext:
     privacy_patterns:   list[str] = field(default_factory=list)
     # Names of patterns matched (e.g. "EMAIL", "CREDIT_CARD") — never the content
 
+    # ─── Prompt Injection / Adversarial Defense ──────────────────────────────
+    injection_detected: bool = False    # True if prompt injection / adversarial override detected
+    injection_patterns: list[str] = field(default_factory=list) # Matched injection rule names
+
     # ─── Stage 4: Temporal Detector ───────────────────────────────────────────
     temporal_decay:     float = 0.0     # D factor — penalty in [0, 1]
     is_temporal:        bool  = False   # True if memory has a detected expiry signal

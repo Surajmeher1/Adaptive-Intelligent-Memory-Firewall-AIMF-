@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Shield, Lock, Eye, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react'
+import { Shield, Lock, Eye, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import { useMemories } from '@/hooks/useAIMF'
 import { Card, CardTitle, CardDescription, SensitivityBadge, ProgressBar, ErrorState, SkeletonStat } from '@/components/ui'
 import clsx from 'clsx'

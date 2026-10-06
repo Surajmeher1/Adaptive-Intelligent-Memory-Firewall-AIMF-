@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,
   ResponsiveContainer,
 } from 'recharts'
-import { GitCompare, Trophy, Zap } from 'lucide-react'
+import { GitCompare, Trophy } from 'lucide-react'
 import { useAlgorithmComparison } from '@/hooks/useAIMF'
 import { Card, CardTitle, CardDescription, Badge, SkeletonCard, ErrorState } from '@/components/ui'
 import clsx from 'clsx'

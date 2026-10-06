@@ -1,34 +1,38 @@
 """
 Alembic environment configuration for AIMF.
 Reads AIMF_DATABASE_URL from environment variables via Pydantic Settings.
-Supports both sync (offline) and async (online) migration modes.
+Supports both sync (offline) and sync-online migration modes.
+Uses a plain synchronous engine so Alembic doesn't conflict with
+the application's async (aiosqlite/asyncpg) driver.
 """
 
 from __future__ import annotations
 
-import asyncio
+import os
+import sys
 from logging.config import fileConfig
 
-from sqlalchemy import pool
-from sqlalchemy.engine import Connection
-from sqlalchemy.ext.asyncio import async_engine_from_config
+# Ensure backend root is on sys.path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from sqlalchemy import create_engine, pool
 
 from alembic import context
 
 # Import AIMF settings and Base (with all models registered)
 from core.config import settings
 from core.database import Base
-import models  # noqa: F401 — registers Memory, LifecycleEvent with Base.metadata
+import models  # noqa: F401 — registers Memory, LifecycleEvent, User, ChatSession, ChatMessage with Base.metadata
 
 # Alembic Config object from alembic.ini
 config = context.config
 
 # Override sqlalchemy.url from settings (respects .env file)
-# Strip the async driver prefix for Alembic compatibility
-sync_url = settings.database_url.replace(
-    "sqlite+aiosqlite://", "sqlite://"
-).replace(
-    "postgresql+asyncpg://", "postgresql+psycopg2://"
+# Strip the async driver prefix so we use a plain synchronous driver
+sync_url = (
+    settings.database_url
+    .replace("sqlite+aiosqlite://", "sqlite://")
+    .replace("postgresql+asyncpg://", "postgresql+psycopg2://")
 )
 config.set_main_option("sqlalchemy.url", sync_url)
 
@@ -53,27 +57,14 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-def do_run_migrations(connection: Connection) -> None:
-    context.configure(connection=connection, target_metadata=target_metadata)
-    with context.begin_transaction():
-        context.run_migrations()
-
-
-async def run_async_migrations() -> None:
-    """Run migrations with an async engine."""
-    connectable = async_engine_from_config(
-        config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
-    async with connectable.connect() as connection:
-        await connection.run_sync(do_run_migrations)
-    await connectable.dispose()
-
-
 def run_migrations_online() -> None:
-    """Run migrations with a live database connection."""
-    asyncio.run(run_async_migrations())
+    """Run migrations with a live synchronous database connection."""
+    url = config.get_main_option("sqlalchemy.url")
+    connectable = create_engine(url, poolclass=pool.NullPool)
+    with connectable.connect() as connection:
+        context.configure(connection=connection, target_metadata=target_metadata)
+        with context.begin_transaction():
+            context.run_migrations()
 
 
 if context.is_offline_mode():

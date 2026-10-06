@@ -62,6 +62,10 @@ def _predict_usefulness(ctx: PipelineContext) -> float:
     """
     Compute usefulness score using the heuristic model.
     """
+    if ctx.injection_detected:
+        # Prompt injection meta-instructions have zero genuine memory usefulness
+        return 0.05
+
     text = ctx.normalised_content
     score = 0.40  # baseline
 

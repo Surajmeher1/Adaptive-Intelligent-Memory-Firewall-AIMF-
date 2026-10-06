@@ -1,6 +1,7 @@
-import { Bell, Menu, Search, Moon, Sun } from 'lucide-react'
-import { useLocation } from 'react-router-dom'
+import { Bell, Menu, Search, Moon, Sun, LogOut } from 'lucide-react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSidebarStore, useThemeStore, useNotificationStore } from '@/store'
+import { useAuthStore } from '@/store/authStore'
 import clsx from 'clsx'
 
 const ROUTE_TITLES: Record<string, { title: string; sub: string }> = {
@@ -17,9 +18,11 @@ const ROUTE_TITLES: Record<string, { title: string; sub: string }> = {
 
 export default function Header() {
   const location = useLocation()
+  const navigate = useNavigate()
   const { toggleMobile } = useSidebarStore()
   const { resolvedTheme, setTheme } = useThemeStore()
   const { unreadCount } = useNotificationStore()
+  const { user, isAuthenticated, logout } = useAuthStore()
 
   const current = ROUTE_TITLES[location.pathname] ?? { title: 'AIMF', sub: '' }
 
@@ -77,10 +80,43 @@ export default function Header() {
           )}
         </button>
 
-        {/* Avatar */}
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 text-xs font-bold text-white select-none">
-          A
-        </div>
+        {/* Auth profile & logout */}
+        {isAuthenticated && user ? (
+          <div className="flex items-center gap-2 pl-2 border-l border-white/[0.08]">
+            <div
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 text-xs font-bold text-white select-none shadow-sm flex-shrink-0"
+              title={`${user.full_name || user.email} (${user.role})`}
+            >
+              {(user.full_name?.[0] || user.email[0] || 'U').toUpperCase()}
+            </div>
+            <div className="hidden lg:flex flex-col text-left leading-tight">
+              <span className="text-xs font-medium text-slate-200 truncate max-w-[120px]">
+                {user.full_name || user.email}
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">
+                {user.role}
+              </span>
+            </div>
+            <button
+              onClick={() => {
+                logout()
+                navigate('/login')
+              }}
+              className="flex items-center gap-1.5 h-8 px-2.5 rounded-lg text-xs text-slate-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+              title="Sign out"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Sign out</span>
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => navigate('/login')}
+            className="flex items-center gap-1.5 h-8 px-3 rounded-lg text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-500 transition-colors"
+          >
+            Sign in
+          </button>
+        )}
       </div>
     </header>
   )

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { CheckCircle2, Loader2, SkipForward } from 'lucide-react'
+import { CheckCircle2, Loader2 } from 'lucide-react'
 
 const STAGES = [
   { name: 'Content Ingestion',       desc: 'Tokenising and normalising input text' },

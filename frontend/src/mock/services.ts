@@ -121,10 +121,6 @@ export async function fetchAlgorithmComparison(): Promise<AlgorithmMetric[]> {
 
 // ─── Memory Lab — Analysis ──────────────────────────────────────────────────
 
-const DECISIONS = [
-  'STORE', 'STORE_ENCRYPTED', 'LONG_TERM',
-  'SUMMARIZE', 'FORGET', 'REJECT_PRIVACY',
-] as const
 
 export async function analyzeMemoryContent(content: string): Promise<AnalysisResult> {
   await delay(1400) // Simulate pipeline processing time

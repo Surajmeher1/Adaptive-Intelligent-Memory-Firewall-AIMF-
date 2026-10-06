@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 import { motion } from 'framer-motion'
 import { Card, CardHeader, CardTitle, CardDescription, SkeletonCard } from '@/components/ui'
 import type { DecisionDistribution } from '@/types'

@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FlaskConical, Zap, RotateCcw, Copy, Check } from 'lucide-react'
 import toast from 'react-hot-toast'
 
-import { analyzeMemoryContent } from '@/mock/services'
-import { Button, Textarea } from '@/components/ui'
+import { analyzeMemoryContent as mockAnalyze } from '@/mock/services'
+import { analyzeMemoryContent as realAnalyze } from '@/services/api'
+import { useAuthStore } from '@/store/authStore'
+import { Button } from '@/components/ui'
 import PipelineVisualizer from './PipelineVisualizer'
 import AnalysisResult     from './AnalysisResult'
 import SamplePrompts      from './SamplePrompts'
@@ -16,24 +18,50 @@ export default function MemoryLabPage() {
   const [input, setInput]     = useState('')
   const [copied, setCopied]   = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
+  const isAuth    = useAuthStore((s) => s.isAuthenticated)
+  const queryClient = useQueryClient()
 
   const mutation = useMutation({
-    mutationFn: analyzeMemoryContent,
-    onSuccess: () => {
+    mutationFn: isAuth ? realAnalyze : mockAnalyze,
+    onSuccess: (data) => {
+      // Invalidate memory vault & dashboard caches so new memories appear immediately
+      queryClient.invalidateQueries({ queryKey: ['memories'] })
+      queryClient.invalidateQueries({ queryKey: ['dashboard'] })
+      queryClient.invalidateQueries({ queryKey: ['analytics'] })
+
+      const dec = data.memory.decision
+      if (dec === 'REJECT_PRIVACY') {
+        toast.error('Privacy violation detected: Memory rejected and NOT persisted.', { duration: 4000 })
+      } else if (dec === 'FORGET') {
+        toast('Low relevance score: Memory rejected and NOT persisted.', { icon: '🚫', duration: 3500 })
+      } else if (dec === 'STORE_ENCRYPTED') {
+        toast.success('Memory approved & securely encrypted in Vault!', { duration: 3500 })
+      } else {
+        toast.success(`Memory analyzed & routed (${dec})`, { duration: 3000 })
+      }
+
       // Scroll to result
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300)
     },
-    onError: () => toast.error('Analysis failed. Please try again.'),
+    onError: (err) => toast.error(err instanceof Error ? err.message : 'Analysis failed. Please try again.'),
   })
 
-  const handleAnalyze = () => {
+  const handleAnalyze = (e?: React.SyntheticEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
     const trimmed = input.trim()
     if (!trimmed) { toast.error('Please enter some text to analyse.'); return }
     if (trimmed.length < 5) { toast.error('Input is too short. Enter at least 5 characters.'); return }
     mutation.mutate(trimmed)
   }
 
-  const handleReset = () => {
+  const handleReset = (e?: React.SyntheticEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
     setInput('')
     mutation.reset()
   }
@@ -43,6 +71,13 @@ export default function MemoryLabPage() {
       navigator.clipboard.writeText(mutation.data.memory.explanation)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault()
+      handleAnalyze()
     }
   }
 
@@ -81,6 +116,7 @@ export default function MemoryLabPage() {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value.slice(0, MAX_CHARS))}
+            onKeyDown={handleKeyDown}
             placeholder="Enter any text — a preference, a fact, personal data, or a temporal statement…&#10;&#10;Examples:&#10;• My credit card number is 4532 XXXX XXXX 1234&#10;• I prefer Python over JavaScript for backend projects&#10;• Meeting tomorrow at 3pm with the design team"
             disabled={isProcessing}
             rows={7}

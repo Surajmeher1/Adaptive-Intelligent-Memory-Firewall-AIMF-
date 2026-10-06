@@ -61,23 +61,25 @@ export function Badge({ children, tone = 'default', size = 'sm', dot = false, cl
 
 // ─── Decision Badge ───────────────────────────────────────────────────────────
 
-const decisionConfig: Record<DecisionType, { label: string; tone: BadgeTone }> = {
+const decisionConfig: Record<string, { label: string; tone: BadgeTone }> = {
   STORE:           { label: 'Store',          tone: 'emerald' },
   STORE_ENCRYPTED: { label: 'Encrypted',      tone: 'indigo'  },
   SUMMARIZE:       { label: 'Summarize',      tone: 'amber'   },
   FORGET:          { label: 'Forget',         tone: 'red'     },
+  REJECT:          { label: 'Reject',         tone: 'red'     },
   REJECT_PRIVACY:  { label: 'Reject',         tone: 'red'     },
   LONG_TERM:       { label: 'Long-term',      tone: 'cyan'    },
 }
 
-export function DecisionBadge({ decision, size = 'sm' }: { decision: DecisionType; size?: 'sm' | 'md' }) {
-  const config = decisionConfig[decision]
+export function DecisionBadge({ decision, size = 'sm' }: { decision?: string | null; size?: 'sm' | 'md' }) {
+  const norm = decision || 'STORE'
+  const config = decisionConfig[norm] || { label: norm, tone: 'slate' as BadgeTone }
   return <Badge tone={config.tone} size={size} dot>{config.label}</Badge>
 }
 
 // ─── Sensitivity Badge ────────────────────────────────────────────────────────
 
-const sensitivityConfig: Record<SensitivityLevel, { label: string; tone: BadgeTone }> = {
+const sensitivityConfig: Record<string, { label: string; tone: BadgeTone }> = {
   none:     { label: 'None',     tone: 'slate'   },
   low:      { label: 'Low',      tone: 'emerald' },
   medium:   { label: 'Medium',   tone: 'amber'   },
@@ -85,21 +87,23 @@ const sensitivityConfig: Record<SensitivityLevel, { label: string; tone: BadgeTo
   critical: { label: 'Critical', tone: 'red'     },
 }
 
-export function SensitivityBadge({ level }: { level: SensitivityLevel }) {
-  const config = sensitivityConfig[level]
+export function SensitivityBadge({ level }: { level?: string | null }) {
+  const norm = (level || 'none').toLowerCase()
+  const config = sensitivityConfig[norm] || sensitivityConfig.none
   return <Badge tone={config.tone} dot>{config.label}</Badge>
 }
 
 // ─── Status Badge ─────────────────────────────────────────────────────────────
 
-const statusConfig: Record<MemoryStatus, { label: string; tone: BadgeTone }> = {
+const statusConfig: Record<string, { label: string; tone: BadgeTone }> = {
   active:   { label: 'Active',   tone: 'emerald' },
   expired:  { label: 'Expired',  tone: 'amber'   },
   forgotten:{ label: 'Forgotten',tone: 'red'     },
   archived: { label: 'Archived', tone: 'slate'   },
 }
 
-export function StatusBadge({ status }: { status: MemoryStatus }) {
-  const config = statusConfig[status]
+export function StatusBadge({ status }: { status?: string | null }) {
+  const norm = (status || 'active').toLowerCase()
+  const config = statusConfig[norm] || statusConfig.active
   return <Badge tone={config.tone} dot>{config.label}</Badge>
 }

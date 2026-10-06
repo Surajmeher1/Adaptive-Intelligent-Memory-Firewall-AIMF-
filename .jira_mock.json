@@ -1,0 +1,3777 @@
+{
+  "project": {
+    "name": "Adaptive Intelligent Memory Firewall",
+    "key": "AIMF",
+    "type": "Software",
+    "board": "Kanban",
+    "workflow": [
+      "TO DO",
+      "IN PROGRESS",
+      "IN REVIEW",
+      "COMPLETED",
+      "ARCHIVED"
+    ]
+  },
+  "issues": [
+    {
+      "key": "AIMF-1",
+      "title": "Research: literature review, gap analysis, problem statement",
+      "description": "Establish the scientific foundation, perform literature review on memory firewalls and context retention, and define research gaps and problem statements.",
+      "status": "COMPLETED",
+      "type": "Research",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-07T12:00:00Z",
+      "updated_at": "2026-08-08T18:00:00Z",
+      "resolved_at": "2026-08-08T18:00:00Z",
+      "labels": [
+        "research"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-2",
+      "title": "Architecture: DB schema, API spec, ADRs",
+      "description": "Design database schemas (SQLite/PostgreSQL with FAISS vector index), REST API specifications, and write Architectural Decision Records (ADRs).",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-08T12:00:00Z",
+      "updated_at": "2026-08-10T18:00:00Z",
+      "resolved_at": "2026-08-10T18:00:00Z",
+      "labels": [
+        "backend",
+        "design"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-3",
+      "title": "Core backend: security, config, Alembic migrations",
+      "description": "Scaffold FastAPI project, configure environment settings, implement security patterns, and initialize database schemas with Alembic migrations.",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-10T12:00:00Z",
+      "updated_at": "2026-08-12T18:00:00Z",
+      "resolved_at": "2026-08-12T18:00:00Z",
+      "labels": [
+        "backend",
+        "infra"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-4",
+      "title": "11-stage AMGS pipeline implementation",
+      "description": "Implement the core 11-stage governance pipeline covering language validation, NER, sensitivity assessment, privacy filters, embedding generation, novelty, context relevance, temporal decay, usefulness, and the final AMGS calculation score.",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-12T12:00:00Z",
+      "updated_at": "2026-08-15T18:00:00Z",
+      "resolved_at": "2026-08-15T18:00:00Z",
+      "labels": [
+        "backend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-5",
+      "title": "REST API endpoints + background tasks",
+      "description": "Implement memory management endpoints (analyze, submit, search, retrieve, update, forget) and asynchronous background tasks for memory expiration and decay.",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-15T12:00:00Z",
+      "updated_at": "2026-08-17T18:00:00Z",
+      "resolved_at": "2026-08-17T18:00:00Z",
+      "labels": [
+        "backend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-6",
+      "title": "Initial React frontend (6 pages)",
+      "description": "Create the first iteration of the frontend covering dashboard metrics, pipeline simulation lab, vault list, and comparative evaluation views.",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-17T12:00:00Z",
+      "updated_at": "2026-08-20T18:00:00Z",
+      "resolved_at": "2026-08-20T18:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-7",
+      "title": "Research evaluation: 4 baselines, 36 tests",
+      "description": "Configure benchmarking logic to compare AIMF accuracy and storage efficiency against 4 baseline models (Store All, Fixed TTL, Static Rules, Recency + Similarity).",
+      "status": "COMPLETED",
+      "type": "Research",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-20T12:00:00Z",
+      "updated_at": "2026-08-22T18:00:00Z",
+      "resolved_at": "2026-08-22T18:00:00Z",
+      "labels": [
+        "research",
+        "backend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-8",
+      "title": "Research paper, ADRs, README",
+      "description": "Draft final research paper, complete Architectural Decision Records, and structure the README overview document.",
+      "status": "COMPLETED",
+      "type": "Research",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-22T12:00:00Z",
+      "updated_at": "2026-08-24T18:00:00Z",
+      "resolved_at": "2026-08-24T18:00:00Z",
+      "labels": [
+        "research"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-9",
+      "title": "CI/CD: GitHub Actions + Vercel deployment",
+      "description": "Configure build workflows in GitHub Actions and connect Vercel webhosting setup.",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-24T12:00:00Z",
+      "updated_at": "2026-08-25T18:00:00Z",
+      "resolved_at": "2026-08-25T18:00:00Z",
+      "labels": [
+        "infra"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-10",
+      "title": "Landing page, login & register pages",
+      "description": "Add premium entry pages (landing overview, interactive sign-in and account registration templates) with layout routing.",
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-25T12:00:00Z",
+      "updated_at": "2026-08-26T18:00:00Z",
+      "resolved_at": "2026-08-26T18:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-12",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 2 Placeholder",
+      "description": "Define color theme palettes, basic layout structures, typography scales, mock database models (JSON) and service simulation wrappers.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-13",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 3 Placeholder",
+      "description": "Build shared component primitives (Button, Card, Modal, Inputs, Tables, etc.) with cohesive style tokens.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-14",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 4 Placeholder",
+      "description": "Construct interactive dashboard metrics, decision distribution feeds, security statuses, and storage graphs.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-15",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 5 Placeholder",
+      "description": "Integrate interactive text playground simulating analysis runs, stages, and confidence thresholds.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-16",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 6 Placeholder",
+      "description": "Develop memory browser layout, filtering, detail dialogs, audit tracking, and forget command controls.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-17",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 7 Placeholder",
+      "description": "Display deep statistical trend graphs, category distribution splits, and temporal metrics.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-18",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 8 Placeholder",
+      "description": "Add lifecycle logs timeline, specific privacy risk highlights, and comparative radar and bar charts.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-19",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 9 Placeholder",
+      "description": "Set up sliders to tweak AMGS weights, toggle modes, customize alerts, and reset mock data catalogs.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-20",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 10 Placeholder",
+      "description": "Incorporate smooth micro-transitions, entrance fades, toast feedback, and skeleton shimmers.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-21",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 11 Placeholder",
+      "description": "Perform responsive checks across mobile and tablet viewport resolutions.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-22",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 12 Placeholder",
+      "description": "Optimize resource loads, audit React components, and memoize expensive computations.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-23",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 13 Placeholder",
+      "description": "Set up unit and navigation tests via Vitest and Testing Library.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-24",
+      "title": "[ARCHIVED - REPLACED BY DETAILED ROADMAP] Phase 14 Placeholder",
+      "description": "Perform accessibility check (ARIA, keyboard navigation), final visual audit, and clean comments.",
+      "status": "ARCHIVED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T12:00:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-25",
+      "title": "RegisterPage: replace personal name placeholder with generic text",
+      "description": "Sanitize placeholder in register view by substituting personal name with a general description ('Your full name') to protect developer identity.",
+      "status": "IN PROGRESS",
+      "type": "Chore",
+      "priority": "Low",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "created_at": "2026-08-27T12:00:00Z",
+      "updated_at": "2026-08-27T18:19:00Z",
+      "labels": [
+        "frontend"
+      ],
+      "comments": []
+    },
+    {
+      "key": "AIMF-11",
+      "task_number": "AIMF-FE-1.1",
+      "title": "AIMF Frontend \u2014 [1.1] Project initialization",
+      "phase": "PHASE 1 \u2014 PROJECT SETUP",
+      "user_story": "As a frontend developer, I want a modern Vite + React 19 + TypeScript + Tailwind v4 project foundation so that the team can build scalable, type-safe UI components efficiently.",
+      "description": "Initialize clean React 19 workspace with Tailwind v4 styling, alias paths, Zustand state management, routing scaffolds, and modern build tooling.",
+      "components": [
+        "Vite Configuration",
+        "React 19 Core",
+        "TypeScript Setup",
+        "Tailwind CSS v4"
+      ],
+      "acceptance_criteria": [
+        "Vite configuration with path aliases (@/) working without issues",
+        "TypeScript compiler strict configuration with zero build errors",
+        "Tailwind CSS v4 theme variables and base reset configured",
+        "Basic directory structure established for components, pages, routes, and stores"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-07-15",
+      "due_date": "2026-07-16",
+      "duration": "2 days",
+      "week": "Week 1",
+      "dependencies": [],
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-08-29T18:00:00Z",
+      "resolved_at": "2026-08-29T18:00:00Z",
+      "comments": []
+    },
+    {
+      "key": "AIMF-33",
+      "task_number": "AIMF-FE-1.2",
+      "title": "AIMF Frontend \u2014 [1.2] Design system \u2014 reusable UI component primitives + mock data layer",
+      "phase": "PHASE 1 \u2014 PROJECT SETUP",
+      "user_story": "As a designer and developer, I want unified design tokens and mock data schemas so that all application pages share consistent visuals and realistic test data.",
+      "description": "Establish cohesive color schemes, dark mode surfaces, typography hierarchy, component spacing guidelines, and schema definitions for memory entities.",
+      "components": [
+        "Design System Tokens",
+        "Theme Config",
+        "Mock Data Schemas"
+      ],
+      "acceptance_criteria": [
+        "Complete color palette defined with CSS variables for dark/light surfaces",
+        "Typography scale and elevation shadows established",
+        "TypeScript schemas defined for memories, metrics, and pipeline events",
+        "Mock fixtures established with representative firewall evaluation states"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-07-16",
+      "due_date": "2026-07-18",
+      "duration": "3 days",
+      "week": "Week 1",
+      "dependencies": [
+        "AIMF-FE-1.1"
+      ],
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-34",
+      "task_number": "AIMF-FE-2.1",
+      "title": "AIMF Frontend \u2014 [2.1] Button, Badge, Spinner, Skeleton",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want consistent UI feedback and loading components so that interactions feel immediate, clear, and visually stable.",
+      "description": "Build primary, secondary, ghost, and danger Button variants, status Badges, loading Spinners, and animated Skeleton loaders.",
+      "components": [
+        "Button",
+        "Badge",
+        "Spinner",
+        "Skeleton"
+      ],
+      "acceptance_criteria": [
+        "Button supports variants (primary, secondary, outline, danger) and loading states",
+        "Badge supports decision colors (STORE, ENCRYPT, FORGET, COMPRESS)",
+        "Spinner offers customizable sizes and accessible aria-live status",
+        "Skeleton provides shimmer effect matching card and table layouts"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-07-17",
+      "due_date": "2026-07-19",
+      "duration": "3 days",
+      "week": "Week 1",
+      "dependencies": [
+        "AIMF-FE-1.2"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-35",
+      "task_number": "AIMF-FE-2.2",
+      "title": "AIMF Frontend \u2014 [2.2] Card, Modal, Drawer, Dialog",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want versatile container and overlay components so that content is neatly organized and modal interactions are intuitive.",
+      "description": "Implement styled Card containers with header/content/footer slots, accessible Modal overlay dialogs, side Drawers, and confirmation Dialogs.",
+      "components": [
+        "Card",
+        "Modal",
+        "Drawer",
+        "Dialog"
+      ],
+      "acceptance_criteria": [
+        "Card supports interactive hover effects, borders, and glassmorphism styling",
+        "Modal handles focus trap, ESC key closing, and backdrop blurring",
+        "Drawer supports smooth slide-in from right/left viewports",
+        "Dialog provides standard confirm/cancel action bindings"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-07-18",
+      "due_date": "2026-07-21",
+      "duration": "4 days",
+      "week": "Week 1",
+      "dependencies": [
+        "AIMF-FE-1.2"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-36",
+      "task_number": "AIMF-FE-2.3",
+      "title": "AIMF Frontend \u2014 [2.3] Input, Textarea, Select, Checkbox, Toggle",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want comprehensive form controls so that I can configure firewall settings and input test memories seamlessly.",
+      "description": "Construct accessible Input, auto-resizing Textarea, custom Select dropdown, Checkbox, and Toggle switch primitives with validation states.",
+      "components": [
+        "Input",
+        "Textarea",
+        "Select",
+        "Checkbox",
+        "Toggle"
+      ],
+      "acceptance_criteria": [
+        "Input and Textarea handle focus states, error messages, and helper text",
+        "Select supports search filtering and keyboard navigation",
+        "Checkbox and Toggle support indeterminate and disabled states",
+        "All controls expose proper ARIA form roles and labels"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-07-19",
+      "due_date": "2026-07-22",
+      "duration": "4 days",
+      "week": "Week 1-2",
+      "dependencies": [
+        "AIMF-FE-1.2"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-37",
+      "task_number": "AIMF-FE-2.4",
+      "title": "AIMF Frontend \u2014 [2.4] Table, Tabs, Accordion, Dropdown, Tooltip",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want dense data displays and contextual UI elements so that I can inspect structured memory records comfortably.",
+      "description": "Develop high-performance Table component with column sorting, animated Tabs switching, collapsible Accordions, context Dropdowns, and hover Tooltips.",
+      "components": [
+        "Table",
+        "Tabs",
+        "Accordion",
+        "Dropdown",
+        "Tooltip"
+      ],
+      "acceptance_criteria": [
+        "Table renders sortable headers, striped rows, and selection checkboxes",
+        "Tabs provide smooth animated indicator transitions",
+        "Accordion handles single or multiple section expansion",
+        "Tooltip positions accurately relative to viewport boundaries"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-07-20",
+      "due_date": "2026-07-23",
+      "duration": "4 days",
+      "week": "Week 1-2",
+      "dependencies": [
+        "AIMF-FE-1.2"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-38",
+      "task_number": "AIMF-FE-2.5",
+      "title": "AIMF Frontend \u2014 [2.5] Search Bar, Filter Panel, Pagination, Breadcrumb",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want filtering, search, and navigation controls so that I can quickly pinpoint specific memories within large datasets.",
+      "description": "Build debounced SearchBar with clear button, expandable FilterPanel with category chips, numeric Pagination bar, and hierarchical Breadcrumbs.",
+      "components": [
+        "SearchBar",
+        "FilterPanel",
+        "Pagination",
+        "Breadcrumb"
+      ],
+      "acceptance_criteria": [
+        "SearchBar provides debounced onChange callbacks with shortcut triggers (/)",
+        "FilterPanel allows multi-criteria filtering with active badge counts",
+        "Pagination supports page jumping, next/prev, and items-per-page selection",
+        "Breadcrumb reflects current route hierarchy with clickable segments"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-07-22",
+      "due_date": "2026-07-24",
+      "duration": "3 days",
+      "week": "Week 2",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.3"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-39",
+      "task_number": "AIMF-FE-2.6",
+      "title": "AIMF Frontend \u2014 [2.6] Toast, Avatar, Empty State, Error State",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want clear feedback on actions and helpful empty/error states so that I am never left confused by application status.",
+      "description": "Create Toast notification system with auto-dismiss timers, user Avatars with status dots, descriptive EmptyState graphics, and recoverable ErrorState views.",
+      "components": [
+        "Toast",
+        "Avatar",
+        "EmptyState",
+        "ErrorState"
+      ],
+      "acceptance_criteria": [
+        "Toast supports success, error, warning, and info variants with action buttons",
+        "Avatar handles image fallback, initials, and active online indicator",
+        "EmptyState displays customizable iconography, title, and call-to-action button",
+        "ErrorState provides retry mechanism and technical error details toggle"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-07-22",
+      "due_date": "2026-07-25",
+      "duration": "4 days",
+      "week": "Week 2",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.2"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-40",
+      "task_number": "AIMF-FE-2.7",
+      "title": "AIMF Frontend \u2014 [2.7] Chart Wrapper, Timeline Component",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a user, I want responsive chart containers and timeline visualizations so that analytical trends and memory event logs look sharp.",
+      "description": "Construct Recharts responsive wrapper with uniform dark styling, custom tooltips, legend formatting, and vertical/horizontal Timeline primitives.",
+      "components": [
+        "ChartWrapper",
+        "TimelineComponent"
+      ],
+      "acceptance_criteria": [
+        "ChartWrapper provides responsive container with loading skeletons and empty fallbacks",
+        "Custom chart tooltip matches dark theme typography and metric formatting",
+        "Timeline renders connecting nodes, custom status icons, and timestamp labels",
+        "Chart components support seamless resize handling without layout shifts"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-07-23",
+      "due_date": "2026-07-26",
+      "duration": "4 days",
+      "week": "Week 2",
+      "dependencies": [
+        "AIMF-FE-2.2"
+      ],
+      "labels": [
+        "frontend",
+        "component",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-41",
+      "task_number": "AIMF-FE-2.8",
+      "title": "AIMF Frontend \u2014 [2.8] Mock data layer (JSON files + service functions)",
+      "phase": "PHASE 2 \u2014 SHARED UI COMPONENTS",
+      "user_story": "As a developer, I want an end-to-end mock data layer so that the frontend can simulate full pipeline analysis, memory storage, and analytics offline.",
+      "description": "Create structured JSON datasets (memories, analytics, dashboard, baselines) and asynchronous service mocks simulating network latency and mutations.",
+      "components": [
+        "Mock JSON Fixtures",
+        "Mock Service Functions",
+        "State Seeders"
+      ],
+      "acceptance_criteria": [
+        "Comprehensive mock datasets covering all 4 decision outcomes (STORE, ENCRYPT, FORGET, COMPRESS)",
+        "Mock service functions simulating getMemories, analyzeMemory, deleteMemory, and getAnalytics",
+        "Simulated network latency and error injection parameters for resilient testing",
+        "Local storage persistence for user-added test memories across browser reloads"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-07-24",
+      "due_date": "2026-07-26",
+      "duration": "3 days",
+      "week": "Week 2",
+      "dependencies": [
+        "AIMF-FE-1.2"
+      ],
+      "labels": [
+        "frontend",
+        "component"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-42",
+      "task_number": "AIMF-FE-3.1",
+      "title": "AIMF Frontend \u2014 [3.1] Stats cards (total memories, encrypted, forgotten, avg AMGS)",
+      "phase": "PHASE 3 \u2014 DASHBOARD PAGE",
+      "user_story": "As an administrator, I want key metric summary cards on the dashboard so that I can immediately monitor overall memory retention health.",
+      "description": "Implement 4 primary stats cards displaying Total Memories, Encrypted Records, Forgotten Memories, and Average AMGS Score with percentage changes.",
+      "components": [
+        "StatsCards",
+        "MetricCounters",
+        "TrendBadges"
+      ],
+      "acceptance_criteria": [
+        "Displays accurate aggregated counts and AMGS average from mock service",
+        "Includes percentage delta indicators comparing current period to previous week",
+        "Animated number roll-up effect on initial dashboard load",
+        "Clicking a card navigates with filtered context to Memory Vault"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-07-27",
+      "due_date": "2026-07-29",
+      "duration": "3 days",
+      "week": "Week 2-3",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-43",
+      "task_number": "AIMF-FE-3.2",
+      "title": "AIMF Frontend \u2014 [3.2] Decision distribution chart (pie/donut \u2014 Recharts)",
+      "phase": "PHASE 3 \u2014 DASHBOARD PAGE",
+      "user_story": "As an administrator, I want an interactive donut chart showing firewall decisions so that I can observe the proportion of stored vs forgotten data.",
+      "description": "Construct Recharts Donut chart breaking down memories into STORE, ENCRYPT, FORGET, and COMPRESS with center summary metric and custom legends.",
+      "components": [
+        "DecisionDonutChart",
+        "ChartLegend",
+        "CenterTotalMetric"
+      ],
+      "acceptance_criteria": [
+        "Donut chart renders slices with distinct color tokens (emerald, amber, rose, cyan)",
+        "Hovering slice highlights corresponding percentage and count in centered label",
+        "Interactive legend allows toggling visibility of specific decision categories",
+        "Responsive scaling on mobile viewports without text clipping"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-07-27",
+      "due_date": "2026-07-30",
+      "duration": "4 days",
+      "week": "Week 2-3",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-44",
+      "task_number": "AIMF-FE-3.3",
+      "title": "AIMF Frontend \u2014 [3.3] Activity feed (recent memory events)",
+      "phase": "PHASE 3 \u2014 DASHBOARD PAGE",
+      "user_story": "As a user, I want a live activity stream on the dashboard so that I can trace recently processed memories and automated firewall actions in real time.",
+      "description": "Develop real-time activity stream displaying timestamp, memory title snippet, decision badge, AMGS score, and triggering event icon.",
+      "components": [
+        "ActivityFeed",
+        "ActivityItem",
+        "LiveEventBadge"
+      ],
+      "acceptance_criteria": [
+        "Shows recent 10 memory lifecycle actions with relative timestamps (e.g. '2m ago')",
+        "Displays color-coded decision badges and stage icon indicators",
+        "Quick-view drawer opens when clicking any event item for full inspection",
+        "Smooth transition animation when new mock events are appended"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-07-28",
+      "due_date": "2026-07-31",
+      "duration": "4 days",
+      "week": "Week 2-3",
+      "dependencies": [
+        "AIMF-FE-2.4",
+        "AIMF-FE-2.6",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-45",
+      "task_number": "AIMF-FE-3.4",
+      "title": "AIMF Frontend \u2014 [3.4] Privacy score widget",
+      "phase": "PHASE 3 \u2014 DASHBOARD PAGE",
+      "user_story": "As a security auditor, I want a consolidated privacy score widget so that I can verify data sanitization and confidentiality levels at a glance.",
+      "description": "Create privacy health meter featuring circular gauge, risk grade (A+, A, B, C), sensitive entity redaction count, and encryption percentage.",
+      "components": [
+        "PrivacyScoreWidget",
+        "SecurityGauge",
+        "RiskLevelBadge"
+      ],
+      "acceptance_criteria": [
+        "Circular progress gauge rendering overall system privacy score (0\u2013100%)",
+        "Breakdown of PII redacted, AES-256 encrypted entries, and zero-leakage guarantee badge",
+        "Dynamic status text explaining risk tier and suggested optimization",
+        "Direct link button to Privacy Dashboard"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-07-29",
+      "due_date": "2026-08-01",
+      "duration": "4 days",
+      "week": "Week 3",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-46",
+      "task_number": "AIMF-FE-3.5",
+      "title": "AIMF Frontend \u2014 [3.5] Quick actions panel",
+      "phase": "PHASE 3 \u2014 DASHBOARD PAGE",
+      "user_story": "As a user, I want quick action shortcut buttons on the dashboard so that I can trigger memory tests, purge cache, or export reports with one click.",
+      "description": "Build quick action grid providing triggers for 'New Memory Analysis', 'Trigger Decay Cycle', 'Export Audit Log', and 'Purge Expired Data'.",
+      "components": [
+        "QuickActionsPanel",
+        "ActionButtons",
+        "TriggerModals"
+      ],
+      "acceptance_criteria": [
+        "Quick actions grid with icons, titles, and keyboard shortcut indicators",
+        "'Analyze Memory' button immediately routes to Memory Lab",
+        "'Trigger Decay' triggers mock decay calculation with success toast",
+        "'Export Audit' generates downloadable JSON/CSV summary file"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-07-30",
+      "due_date": "2026-08-02",
+      "duration": "4 days",
+      "week": "Week 3",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.2"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-47",
+      "task_number": "AIMF-FE-3.6",
+      "title": "AIMF Frontend \u2014 [3.6] Storage summary widget",
+      "phase": "PHASE 3 \u2014 DASHBOARD PAGE",
+      "user_story": "As a systems engineer, I want a storage summary widget so that I can assess database capacity, compression savings, and FAISS vector index status.",
+      "description": "Develop storage usage meter displaying allocated memory vs capacity, compression ratio savings (e.g. 64% reduction), and vector embedding count.",
+      "components": [
+        "StorageSummaryWidget",
+        "CapacityBar",
+        "VectorIndexStatus"
+      ],
+      "acceptance_criteria": [
+        "Multi-segment progress bar showing raw memory, compressed memory, and free space",
+        "Displays compression savings metric and storage efficiency multiplier",
+        "Shows vector index count and FAISS index health badge",
+        "Tooltip breaks down storage size by memory category"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-07-31",
+      "due_date": "2026-08-02",
+      "duration": "3 days",
+      "week": "Week 3",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-48",
+      "task_number": "AIMF-FE-4.1",
+      "title": "AIMF Frontend \u2014 [4.1] Text input + character counter",
+      "phase": "PHASE 4 \u2014 MEMORY LAB",
+      "user_story": "As a researcher, I want an intuitive text area with sample prompts and character counter so that I can easily test firewall evaluation scenarios.",
+      "description": "Construct Memory Lab input area with real-time character/token counter, clear trigger, preset test prompt selector (PII, Chat, Sensitive, Redundant).",
+      "components": [
+        "MemoryTextInput",
+        "CharacterCounter",
+        "PresetSelector"
+      ],
+      "acceptance_criteria": [
+        "Textarea auto-grows dynamically with input length and supports placeholder styling",
+        "Live character and estimated token counter with warning on exceeding limit",
+        "Preset selector dropdown pre-fills realistic test prompts with one click",
+        "Clear button resets input and previous analysis state"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-01",
+      "due_date": "2026-08-03",
+      "duration": "3 days",
+      "week": "Week 3",
+      "dependencies": [
+        "AIMF-FE-2.3"
+      ],
+      "labels": [
+        "frontend",
+        "memory-lab"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-49",
+      "task_number": "AIMF-FE-4.2",
+      "title": "AIMF Frontend \u2014 [4.2] Analyze button with loading state",
+      "phase": "PHASE 4 \u2014 MEMORY LAB",
+      "user_story": "As a user, I want an interactive analyze button with loading animation so that I understand evaluation is taking place through the pipeline.",
+      "description": "Implement prominent primary action button triggering memory analysis with animated spinner, progress text, execution timer, and disabled states.",
+      "components": [
+        "AnalyzeButton",
+        "LoadingPulse",
+        "ExecutionTimer"
+      ],
+      "acceptance_criteria": [
+        "Disabled when input text is empty or analysis is actively running",
+        "Transitions to loading state with glowing pulse effect during computation",
+        "Displays elapsed execution milliseconds upon completion",
+        "Supports Cmd+Enter / Ctrl+Enter keyboard shortcut execution"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-01",
+      "due_date": "2026-08-03",
+      "duration": "3 days",
+      "week": "Week 3",
+      "dependencies": [
+        "AIMF-FE-2.1"
+      ],
+      "labels": [
+        "frontend",
+        "memory-lab"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-50",
+      "task_number": "AIMF-FE-4.3",
+      "title": "AIMF Frontend \u2014 [4.3] Mock analysis pipeline visualization",
+      "phase": "PHASE 4 \u2014 MEMORY LAB",
+      "user_story": "As an AI engineer, I want a step-by-step pipeline visualization so that I can follow how the 11 AMGS analysis stages process the input sequentially.",
+      "description": "Construct animated 11-stage pipeline flow component (Language, NER, Privacy, Embedding, Novelty, Relevance, Decay, Usefulness, AMGS Calculation).",
+      "components": [
+        "PipelineVisualizer",
+        "StageNode",
+        "StepProgressBar"
+      ],
+      "acceptance_criteria": [
+        "Renders 11 distinct stage pills with status icons (pending, active, completed, flagged)",
+        "Sequential step animation simulating real-time processing through each stage",
+        "Clicking any stage opens detail inspection panel with intermediate output",
+        "Visual warning highlights stages where PII or low-novelty thresholds were tripped"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-02",
+      "due_date": "2026-08-05",
+      "duration": "4 days",
+      "week": "Week 3-4",
+      "dependencies": [
+        "AIMF-FE-4.1",
+        "AIMF-FE-4.2"
+      ],
+      "labels": [
+        "frontend",
+        "memory-lab",
+        "animation"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-51",
+      "task_number": "AIMF-FE-4.4",
+      "title": "AIMF Frontend \u2014 [4.4] Decision result card with confidence indicator",
+      "phase": "PHASE 4 \u2014 MEMORY LAB",
+      "user_story": "As a user, I want a comprehensive decision result card so that I understand what action the firewall took and the rationale behind it.",
+      "description": "Create primary result showcase displaying final verdict (STORE, ENCRYPT, FORGET, COMPRESS), confidence percentage meter, and human-readable explanation.",
+      "components": [
+        "DecisionResultCard",
+        "ConfidenceMeter",
+        "ReasoningSummary"
+      ],
+      "acceptance_criteria": [
+        "Prominent decision badge with high-contrast theme coloring",
+        "Confidence gauge indicating model certainty (0\u2013100%)",
+        "Detailed rationale paragraph explaining AMGS scoring breakdown",
+        "Action buttons to 'Save to Vault' or 'Re-evaluate with Custom Weights'"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-03",
+      "due_date": "2026-08-06",
+      "duration": "4 days",
+      "week": "Week 3-4",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-4.3"
+      ],
+      "labels": [
+        "frontend",
+        "memory-lab"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-52",
+      "task_number": "AIMF-FE-4.5",
+      "title": "AIMF Frontend \u2014 [4.5] Factor score bars (7 AMGS factors)",
+      "phase": "PHASE 4 \u2014 MEMORY LAB",
+      "user_story": "As a researcher, I want horizontal bar charts for all 7 AMGS factors so that I can inspect the exact sub-scores driving the decision.",
+      "description": "Build interactive horizontal progress bars representing the 7 AMGS factors (Sensitivity, Privacy Risk, Novelty, Semantic Relevance, Temporal Utility, Access Frequency, Verification Status).",
+      "components": [
+        "FactorScoreBars",
+        "FactorTooltip",
+        "WeightMultiplierTag"
+      ],
+      "acceptance_criteria": [
+        "7 individual factor progress bars with score numbers (0.00 to 1.00)",
+        "Color gradients shifting from green (optimal) to red (high risk/low utility)",
+        "Hover tooltip explaining mathematical formula and assigned weight multiplier",
+        "Animated bar fill transitions upon analysis completion"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-04",
+      "due_date": "2026-08-07",
+      "duration": "4 days",
+      "week": "Week 3-4",
+      "dependencies": [
+        "AIMF-FE-4.4"
+      ],
+      "labels": [
+        "frontend",
+        "memory-lab"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-53",
+      "task_number": "AIMF-FE-4.6",
+      "title": "AIMF Frontend \u2014 [4.6] AMGS score gauge",
+      "phase": "PHASE 4 \u2014 MEMORY LAB",
+      "user_story": "As a user, I want a radial AMGS score gauge so that I can visualize where the composite score sits relative to firewall retention thresholds.",
+      "description": "Construct semi-circular radial gauge rendering final AMGS composite score (0.00\u20131.00) with color zones for Forget (<0.35), Encrypt (0.35\u20130.70), and Store (>0.70).",
+      "components": [
+        "AMGSScoreGauge",
+        "TierClassificationBadge",
+        "ThresholdMarker"
+      ],
+      "acceptance_criteria": [
+        "Radial needle/arc gauge animating smoothly to final score value",
+        "Configurable threshold markers showing decision cutoff points",
+        "Classification badge (e.g. 'High Utility \u2014 Store in FAISS Vault')",
+        "Responsive sizing adapting to tablet and mobile lab views"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-04",
+      "due_date": "2026-08-07",
+      "duration": "4 days",
+      "week": "Week 3-4",
+      "dependencies": [
+        "AIMF-FE-4.4"
+      ],
+      "labels": [
+        "frontend",
+        "memory-lab"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-54",
+      "task_number": "AIMF-FE-5.1",
+      "title": "AIMF Frontend \u2014 [5.1] Search + filter bar",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want search and filtering tools in Memory Vault so that I can locate specific memory records across thousands of items.",
+      "description": "Develop Vault header search toolbar with text search, decision filter chips (All, Store, Encrypt, Forget), category dropdowns, and date filters.",
+      "components": [
+        "VaultSearchBar",
+        "CategoryFilterChips",
+        "DateRangePicker"
+      ],
+      "acceptance_criteria": [
+        "Real-time search filtering across memory title, content, and entity tags",
+        "Quick filter chips for decision status with item count badges",
+        "Category multi-select filter (Personal, Technical, Preference, Secret)",
+        "Active filter count indicator with one-click 'Clear Filters' button"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-06",
+      "due_date": "2026-08-08",
+      "duration": "3 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.3",
+        "AIMF-FE-2.5"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-55",
+      "task_number": "AIMF-FE-5.2",
+      "title": "AIMF Frontend \u2014 [5.2] Grid / List view toggle",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want to switch between Grid and List views in Memory Vault so that I can choose between dense data review and visual card browsing.",
+      "description": "Build segmented view mode toggle persisting preference in local storage with smooth layout transition between card grid and tabular list.",
+      "components": [
+        "ViewToggleGroup",
+        "LayoutTransitionWrapper"
+      ],
+      "acceptance_criteria": [
+        "Segmented icon toggle (Grid vs List) with active highlight indicator",
+        "Grid view renders multi-column card layout with visual score meters",
+        "List view renders dense table layout with sortable columns",
+        "User preference persists in localStorage across browser sessions"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-06",
+      "due_date": "2026-08-08",
+      "duration": "3 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.1"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-56",
+      "task_number": "AIMF-FE-5.3",
+      "title": "AIMF Frontend \u2014 [5.3] Memory cards with status badges",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want informative memory cards with status badges so that I can inspect snippet, decision status, and AMGS score at a glance.",
+      "description": "Implement MemoryCard component with status badge, masked content for encrypted items, AMGS score pill, category tag, and timestamp.",
+      "components": [
+        "MemoryCard",
+        "MemoryListItem",
+        "StatusBadgeGroup"
+      ],
+      "acceptance_criteria": [
+        "Displays encrypted memories with blur mask and unlock prompt",
+        "Color-coded status badges for STORE, ENCRYPT, FORGET, COMPRESS",
+        "Shows AMGS score meter and access frequency counter",
+        "Includes quick action menu (View details, Edit tags, Manual forget)"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-07",
+      "due_date": "2026-08-10",
+      "duration": "4 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.2",
+        "AIMF-FE-5.1"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-57",
+      "task_number": "AIMF-FE-5.4",
+      "title": "AIMF Frontend \u2014 [5.4] Sort options",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want flexible sorting options in Memory Vault so that I can order memories by score, recency, or access frequency.",
+      "description": "Construct sort selector dropdown with options for AMGS Score, Creation Date, Last Accessed, Sensitivity Level, and ascending/descending toggle.",
+      "components": [
+        "SortDropdown",
+        "SortOrderButton"
+      ],
+      "acceptance_criteria": [
+        "Supports sorting by: Highest AMGS, Lowest AMGS, Newest, Oldest, Most Accessed",
+        "Ascending/Descending toggle button with arrow orientation change",
+        "Sort state synchronized with URL query params for shareable views",
+        "Immediate in-memory sort re-ordering without full page re-render"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-08",
+      "due_date": "2026-08-10",
+      "duration": "3 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.4",
+        "AIMF-FE-5.1"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-58",
+      "task_number": "AIMF-FE-5.5",
+      "title": "AIMF Frontend \u2014 [5.5] Pagination",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want smooth pagination controls so that I can navigate large collections of memories without performance degradation.",
+      "description": "Implement responsive pagination toolbar showing item ranges (e.g. 'Showing 1\u201312 of 84 memories'), page numbers, and items-per-page selector.",
+      "components": [
+        "VaultPagination",
+        "PageSizeSelector",
+        "ItemRangeCounter"
+      ],
+      "acceptance_criteria": [
+        "Displays current page, total pages, and direct page jump buttons",
+        "Selector for 12, 24, 48 items per page with instant re-pagination",
+        "Disables previous/next buttons at collection boundaries",
+        "Scrolls smoothly to top of vault view when switching pages"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-08",
+      "due_date": "2026-08-11",
+      "duration": "4 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.5",
+        "AIMF-FE-5.3"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-59",
+      "task_number": "AIMF-FE-5.6",
+      "title": "AIMF Frontend \u2014 [5.6] Memory detail modal",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want a comprehensive detail modal for any memory so that I can inspect full text, extracted entities, embeddings, and audit logs.",
+      "description": "Build slide-over or centered modal displaying complete memory content, redaction logs, 7 AMGS factor breakdown, FAISS embedding dimensions, and history.",
+      "components": [
+        "MemoryDetailModal",
+        "VectorEmbeddingInspector",
+        "AuditHistoryTab"
+      ],
+      "acceptance_criteria": [
+        "Renders full unmasked text (or decrypted view with confirmation)",
+        "Displays extracted NER tags (People, Locations, Keys, Dates) with pill badges",
+        "Shows historical access log with timestamps and querying agent IDs",
+        "Provides action buttons: 'Export JSON', 'Edit Metadata', 'Purge Immediately'"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-09",
+      "due_date": "2026-08-12",
+      "duration": "4 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-5.3"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-60",
+      "task_number": "AIMF-FE-5.7",
+      "title": "AIMF Frontend \u2014 [5.7] Empty state",
+      "phase": "PHASE 5 \u2014 MEMORY VAULT",
+      "user_story": "As a user, I want an informative empty state when no memories match filters so that I understand why the view is blank and how to reset it.",
+      "description": "Implement empty state graphic with custom messaging for 'No memories match your search filters' and 'Vault is completely empty'.",
+      "components": [
+        "VaultEmptyState",
+        "ResetFiltersButton",
+        "QuickSeedButton"
+      ],
+      "acceptance_criteria": [
+        "Displays illustration, explanatory text, and active filter query summary",
+        "'Clear Filters' button immediately restores full vault dataset",
+        "'Load Sample Memories' button populates mock database if vault is clean",
+        "Accessible text announcement for screen readers"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-10",
+      "due_date": "2026-08-12",
+      "duration": "3 days",
+      "week": "Week 4",
+      "dependencies": [
+        "AIMF-FE-2.6",
+        "AIMF-FE-5.3"
+      ],
+      "labels": [
+        "frontend",
+        "memory-vault"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-61",
+      "task_number": "AIMF-FE-6.1",
+      "title": "AIMF Frontend \u2014 [6.1] Decision distribution (bar + pie)",
+      "phase": "PHASE 6 \u2014 ANALYTICS",
+      "user_story": "As a researcher, I want paired bar and pie charts of firewall decisions so that I can evaluate global decision ratios across datasets.",
+      "description": "Construct Recharts comparative bar chart and pie distribution showing absolute counts and percentages for STORE, ENCRYPT, FORGET, COMPRESS.",
+      "components": [
+        "DecisionBarChart",
+        "DecisionPieChart",
+        "CategorySummaryCard"
+      ],
+      "acceptance_criteria": [
+        "Bar chart compares decision counts across memory categories",
+        "Pie chart displays overall proportion with interactive slice highlights",
+        "Displays key ratio metrics (e.g. 'Retention Rate: 42.5%')",
+        "Interactive tooltips with formatted numbers and percentage shares"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-11",
+      "due_date": "2026-08-13",
+      "duration": "3 days",
+      "week": "Week 4-5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-62",
+      "task_number": "AIMF-FE-6.2",
+      "title": "AIMF Frontend \u2014 [6.2] AMGS score trend line chart",
+      "phase": "PHASE 6 \u2014 ANALYTICS",
+      "user_story": "As an AI engineer, I want an AMGS trend line chart over time so that I can track memory quality shifts across weeks of agent interaction.",
+      "description": "Implement multi-series line chart rendering daily average AMGS score, 7-day moving average, and upper/lower threshold reference bands.",
+      "components": [
+        "AMGSScoreTrendChart",
+        "MovingAverageLine",
+        "ThresholdReferenceLine"
+      ],
+      "acceptance_criteria": [
+        "Smooth bezier curves for daily AMGS score and moving average",
+        "Threshold reference lines at 0.35 (Forget cutoff) and 0.70 (Store cutoff)",
+        "Date range zooming/panning controls (7D, 30D, 90D, All)",
+        "Tooltip showing date, average AMGS score, and memory sample volume"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-11",
+      "due_date": "2026-08-14",
+      "duration": "4 days",
+      "week": "Week 4-5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-63",
+      "task_number": "AIMF-FE-6.3",
+      "title": "AIMF Frontend \u2014 [6.3] Privacy level breakdown",
+      "phase": "PHASE 6 \u2014 ANALYTICS",
+      "user_story": "As a compliance officer, I want privacy level breakdown charts so that I can audit sensitive entity occurrences and sanitization rates.",
+      "description": "Construct stacked bar chart and metrics panel showing distribution of memories by privacy tier (Public, Internal, Confidential, Restricted/PII).",
+      "components": [
+        "PrivacyLevelChart",
+        "SensitivityStackedBar",
+        "PIICounterCard"
+      ],
+      "acceptance_criteria": [
+        "Stacked bar chart showing privacy tiers across memory domains",
+        "Summary cards for PII detected (Emails, API Keys, Phone numbers, Names)",
+        "100% sanitization success indicator badge with zero-leakage verification",
+        "Downloadable compliance report snapshot button"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-12",
+      "due_date": "2026-08-14",
+      "duration": "3 days",
+      "week": "Week 4-5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-64",
+      "task_number": "AIMF-FE-6.4",
+      "title": "AIMF Frontend \u2014 [6.4] Memory category breakdown",
+      "phase": "PHASE 6 \u2014 ANALYTICS",
+      "user_story": "As a user, I want a memory category breakdown chart so that I know what types of memories consume the most storage.",
+      "description": "Develop horizontal bar chart / treemap showing memories grouped by category (Code Snippets, User Preferences, Factual Knowledge, Context Logs).",
+      "components": [
+        "CategoryBreakdownChart",
+        "CategoryMetricsGrid"
+      ],
+      "acceptance_criteria": [
+        "Visual horizontal bars with category icons and memory counts",
+        "Displays average AMGS score and storage footprint per category",
+        "Clicking a category bar filters analytics view to that domain",
+        "Responsive layout scaling cleanly on small screens"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-13",
+      "due_date": "2026-08-15",
+      "duration": "3 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-65",
+      "task_number": "AIMF-FE-6.5",
+      "title": "AIMF Frontend \u2014 [6.5] Monthly statistics area chart",
+      "phase": "PHASE 6 \u2014 ANALYTICS",
+      "user_story": "As an administrator, I want a monthly statistics area chart so that I can analyze growth trends and automated memory pruning efficiency.",
+      "description": "Build stacked gradient area chart displaying monthly memory ingestion vs memory decay/pruning volume over a 6-month period.",
+      "components": [
+        "MonthlyStatsAreaChart",
+        "GradientFills",
+        "CumulativeGrowthMeter"
+      ],
+      "acceptance_criteria": [
+        "Dual-area chart showing Ingested Memories vs Decayed Memories with gradient fills",
+        "Net memory storage growth curve overlaid on secondary axis",
+        "Interactive crosshair tooltip showing exact monthly figures",
+        "Toggle buttons for monthly, quarterly, and annual aggregation"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-13",
+      "due_date": "2026-08-16",
+      "duration": "4 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-66",
+      "task_number": "AIMF-FE-6.6",
+      "title": "AIMF Frontend \u2014 [6.6] Performance metrics",
+      "phase": "PHASE 6 \u2014 ANALYTICS",
+      "user_story": "As a performance engineer, I want pipeline performance metric widgets so that I can verify low latency and high throughput for memory evaluations.",
+      "description": "Construct performance dashboard cards displaying pipeline execution latency (p50, p95, p99 ms), throughput (req/sec), and FAISS query times.",
+      "components": [
+        "PerformanceMetricsGrid",
+        "LatencyCard",
+        "ThroughputGauge"
+      ],
+      "acceptance_criteria": [
+        "Displays latency benchmarks (e.g. p50: 12ms, p95: 38ms, p99: 64ms)",
+        "Throughput gauge displaying current and peak evaluations per second",
+        "Vector search query latency card showing FAISS index retrieval speed",
+        "Visual latency health indicator badge (Optimal < 50ms)"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-14",
+      "due_date": "2026-08-16",
+      "duration": "3 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics",
+        "performance"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-67",
+      "task_number": "AIMF-FE-7.1",
+      "title": "AIMF Frontend \u2014 [7.1] Timeline page (event log with icons)",
+      "phase": "PHASE 7 \u2014 REMAINING PAGES",
+      "user_story": "As a security auditor, I want a dedicated Timeline event log page so that I can inspect complete historical memory mutations chronologically.",
+      "description": "Develop full Timeline page with vertical connecting event spine, filter by event type (Created, Encrypted, Decayed, Forgotten), and time markers.",
+      "components": [
+        "TimelinePage",
+        "EventCard",
+        "TimelineFilterBar"
+      ],
+      "acceptance_criteria": [
+        "Chronological timeline with grouped date headers (Today, Yesterday, Last Week)",
+        "Event cards with distinct iconography for Creation, Access, Encryption, Purge",
+        "Filter bar allowing isolation of specific action types or memory IDs",
+        "Expandable event detail drawer showing payload diff and trigger agent"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-15",
+      "due_date": "2026-08-18",
+      "duration": "4 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "component"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-68",
+      "task_number": "AIMF-FE-7.2",
+      "title": "AIMF Frontend \u2014 [7.2] Privacy dashboard (sensitive/encrypted/forgotten)",
+      "phase": "PHASE 7 \u2014 REMAINING PAGES",
+      "user_story": "As a privacy officer, I want a standalone Privacy Dashboard page so that I can review security posture, active encryption keys, and redaction audits.",
+      "description": "Build dedicated Privacy page featuring sensitivity tier matrix, AES-256 encryption status cards, PII redaction table, and GDPR compliance score.",
+      "components": [
+        "PrivacyDashboardPage",
+        "RiskMatrix",
+        "EncryptionKeyStatus"
+      ],
+      "acceptance_criteria": [
+        "Interactive risk matrix plotting memories by Sensitivity vs Access Frequency",
+        "Encryption vault overview displaying encrypted record count and key status",
+        "Auditable log of all automatically forgotten sensitive memories",
+        "One-click 'Trigger Emergency Data Scrub' modal with safeguard confirmation"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-16",
+      "due_date": "2026-08-18",
+      "duration": "3 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.8",
+        "AIMF-FE-3.4"
+      ],
+      "labels": [
+        "frontend",
+        "dashboard"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-69",
+      "task_number": "AIMF-FE-7.3",
+      "title": "AIMF Frontend \u2014 [7.3] Algorithm Comparison (AIMF vs baselines \u2014 radar + bar charts)",
+      "phase": "PHASE 7 \u2014 REMAINING PAGES",
+      "user_story": "As a researcher, I want an Algorithm Comparison page with radar and bar charts so that I can demonstrate AIMF superiority over 4 baseline models.",
+      "description": "Construct scientific comparison page evaluating AIMF against Store All, Fixed TTL, Static Rules, and Recency+Similarity across 36 benchmark tests.",
+      "components": [
+        "ComparisonPage",
+        "BaselineRadarChart",
+        "MetricsComparisonTable"
+      ],
+      "acceptance_criteria": [
+        "Radar chart comparing 5 models across Accuracy, Privacy, Storage Efficiency, Latency, Retrieval Quality",
+        "Bar chart displaying storage reduction percentage (AIMF: 68% vs Store All: 0%)",
+        "Comprehensive benchmark metrics table with highlights for best-in-class results",
+        "Toggleable benchmark test dataset selector (ChatBot-Bench, PII-Corpus)"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-16",
+      "due_date": "2026-08-19",
+      "duration": "4 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "analytics",
+        "research"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-70",
+      "task_number": "AIMF-FE-7.4",
+      "title": "AIMF Frontend \u2014 [7.4] About page (project info, tech stack, team)",
+      "phase": "PHASE 7 \u2014 REMAINING PAGES",
+      "user_story": "As a visitor, I want an About page explaining the AIMF project, architecture, and team so that I understand the system's background.",
+      "description": "Implement About page featuring project mission statement, system architecture flowchart, technology stack badges, and team member profile cards.",
+      "components": [
+        "AboutPage",
+        "ArchitectureSection",
+        "TeamProfilesGrid"
+      ],
+      "acceptance_criteria": [
+        "Mission and problem statement overview for Adaptive Intelligent Memory Firewall",
+        "Interactive technology stack badge grid (React 19, Vite, Tailwind v4, FastAPI, FAISS)",
+        "Team member profile cards for Suraj Meher, Sourav Karan Kisku, and Lipun Behera",
+        "Links to GitHub repository, research documentation, and paper preprint"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-17",
+      "due_date": "2026-08-19",
+      "duration": "3 days",
+      "week": "Week 5",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.6"
+      ],
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-71",
+      "task_number": "AIMF-FE-8.1",
+      "title": "AIMF Frontend \u2014 [8.1] Appearance (theme toggle, compact mode)",
+      "phase": "PHASE 8 \u2014 SETTINGS",
+      "user_story": "As a user, I want appearance settings so that I can toggle dark/light theme, accent colors, and compact UI density.",
+      "description": "Construct appearance preferences section with Dark/Light/System theme switch, accent color picker (Indigo, Emerald, Violet, Cyan), and compact mode toggle.",
+      "components": [
+        "AppearanceSettings",
+        "ThemeSelector",
+        "DensityToggle"
+      ],
+      "acceptance_criteria": [
+        "Theme switch instantly applies CSS variables without page reload",
+        "Accent color picker dynamically updates brand highlights across all components",
+        "Compact mode toggle reduces table padding and card margins for dense viewing",
+        "All appearance preferences persisted in localStorage"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-18",
+      "due_date": "2026-08-20",
+      "duration": "3 days",
+      "week": "Week 5-6",
+      "dependencies": [
+        "AIMF-FE-2.3"
+      ],
+      "labels": [
+        "frontend",
+        "settings",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-72",
+      "task_number": "AIMF-FE-8.2",
+      "title": "AIMF Frontend \u2014 [8.2] Notification preferences",
+      "phase": "PHASE 8 \u2014 SETTINGS",
+      "user_story": "As an administrator, I want notification preferences so that I can configure alerts for critical privacy breaches or capacity warnings.",
+      "description": "Build notification settings panel with toggles for PII breach alerts, low storage warnings, memory decay digests, and notification sound effects.",
+      "components": [
+        "NotificationSettings",
+        "AlertChannelToggles",
+        "SeveritySelector"
+      ],
+      "acceptance_criteria": [
+        "Toggles for distinct alert categories (Security Breaches, Decay Events, Weekly Digest)",
+        "Toast notification preview test button",
+        "Minimum severity threshold selector (Info, Warning, Critical Only)",
+        "Settings persist to user preference store"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-18",
+      "due_date": "2026-08-21",
+      "duration": "4 days",
+      "week": "Week 5-6",
+      "dependencies": [
+        "AIMF-FE-2.3"
+      ],
+      "labels": [
+        "frontend",
+        "settings"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-73",
+      "task_number": "AIMF-FE-8.3",
+      "title": "AIMF Frontend \u2014 [8.3] AMGS weight sliders",
+      "phase": "PHASE 8 \u2014 SETTINGS",
+      "user_story": "As an AI researcher, I want interactive sliders for the 7 AMGS factor weights so that I can tune firewall policy behavior in real time.",
+      "description": "Implement interactive slider controls for the 7 AMGS weights (Sensitivity, Privacy, Novelty, Relevance, Temporal, Frequency, Verification) with auto-normalization.",
+      "components": [
+        "AMGSWeightSliders",
+        "WeightDistributionPie",
+        "ResetWeightsButton"
+      ],
+      "acceptance_criteria": [
+        "7 range sliders with live numeric readout (0.00 to 1.00)",
+        "Real-time weight sum validation with optional auto-normalize button to 1.00",
+        "Mini pie chart showing live proportion of factor weights",
+        "Preset buttons for 'Privacy First', 'High Retention', and 'Default Balanced'"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-19",
+      "due_date": "2026-08-21",
+      "duration": "3 days",
+      "week": "Week 5-6",
+      "dependencies": [
+        "AIMF-FE-2.3"
+      ],
+      "labels": [
+        "frontend",
+        "settings"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-74",
+      "task_number": "AIMF-FE-8.4",
+      "title": "AIMF Frontend \u2014 [8.4] Threshold configuration",
+      "phase": "PHASE 8 \u2014 SETTINGS",
+      "user_story": "As an administrator, I want threshold configuration controls so that I can define exact cutoff points for STORE, ENCRYPT, and FORGET decisions.",
+      "description": "Construct decision boundary range slider setting Forget Cutoff (default 0.35) and Store Cutoff (default 0.70) with interactive visual preview.",
+      "components": [
+        "ThresholdConfigPanel",
+        "DecisionBoundarySlider",
+        "PolicyPreviewWidget"
+      ],
+      "acceptance_criteria": [
+        "Dual-handle range slider defining Forget (< tau1), Encrypt (tau1\u2013tau2), and Store (> tau2)",
+        "Live visualization showing simulated impact on mock memory distribution",
+        "Conflict prevention preventing Forget threshold from exceeding Store threshold",
+        "Save policy button updating active evaluation engine config"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-20",
+      "due_date": "2026-08-22",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-2.3",
+        "AIMF-FE-8.3"
+      ],
+      "labels": [
+        "frontend",
+        "settings"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-75",
+      "task_number": "AIMF-FE-8.5",
+      "title": "AIMF Frontend \u2014 [8.5] Data management (clear mock data)",
+      "phase": "PHASE 8 \u2014 SETTINGS",
+      "user_story": "As a developer, I want data management options so that I can reset mock memory fixtures, import custom test datasets, or clear local caches.",
+      "description": "Build data maintenance panel with options to 'Reset to Default Mock Fixtures', 'Purge All Local Memories', and 'Export Full State JSON'.",
+      "components": [
+        "DataManagementSection",
+        "ResetDataModal",
+        "ExportDatabaseButton"
+      ],
+      "acceptance_criteria": [
+        "'Reset Mock Data' button restores default memory catalog with confirmation modal",
+        "'Clear Cache' flushes localStorage stores cleanly without page breakage",
+        "'Export State' downloads full application state as JSON file",
+        "Success feedback toast upon successful data reset"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-20",
+      "due_date": "2026-08-22",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "settings"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-76",
+      "task_number": "AIMF-FE-9.1",
+      "title": "AIMF Frontend \u2014 [9.1] Page transition animations",
+      "phase": "PHASE 9 \u2014 ANIMATIONS & POLISH",
+      "user_story": "As a user, I want smooth page transition animations so that navigating between dashboard, lab, vault, and analytics feels fluid and premium.",
+      "description": "Implement Framer Motion page transition wrapper with subtle fade-and-slide motion variants and AnimatePresence integration across all routes.",
+      "components": [
+        "PageTransitionWrapper",
+        "FramerMotionConfig"
+      ],
+      "acceptance_criteria": [
+        "Smooth 200ms ease-out opacity and subtle Y-axis translation during route change",
+        "No content flickering or scroll jumping between route transitions",
+        "Respects user 'prefers-reduced-motion' media query by disabling motion",
+        "Consistent exit and enter animations across all 10 application views"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-21",
+      "due_date": "2026-08-23",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-7.4",
+        "AIMF-FE-8.5"
+      ],
+      "labels": [
+        "frontend",
+        "animation",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-77",
+      "task_number": "AIMF-FE-9.2",
+      "title": "AIMF Frontend \u2014 [9.2] Card hover micro-animations",
+      "phase": "PHASE 9 \u2014 ANIMATIONS & POLISH",
+      "user_story": "As a user, I want subtle hover micro-animations on interactive cards so that the interface feels responsive and visually engaging.",
+      "description": "Add subtle scale-up (1.01x), border glow highlight, and elevation shadow transitions to Memory Cards, Stats Widgets, and Action Panels.",
+      "components": [
+        "CardHoverMotion",
+        "GlowEffectWrapper"
+      ],
+      "acceptance_criteria": [
+        "Smooth CSS / Framer Motion hover elevation without layout jitter",
+        "Subtle border glow effect reacting to cursor focus on dark backgrounds",
+        "Hardware-accelerated transforms (transform, opacity) for 60fps smoothness",
+        "Disabled on touch screens to prevent sticky hover states on mobile"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-22",
+      "due_date": "2026-08-24",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-2.2"
+      ],
+      "labels": [
+        "frontend",
+        "animation",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-78",
+      "task_number": "AIMF-FE-9.3",
+      "title": "AIMF Frontend \u2014 [9.3] Chart entrance animations",
+      "phase": "PHASE 9 \u2014 ANIMATIONS & POLISH",
+      "user_story": "As a user, I want progressive entrance animations on charts so that analytical data loads with visually appealing presentation.",
+      "description": "Configure staged Recharts entrance transitions for bar growth, area sweeps, donut rotation, and line drawing effects.",
+      "components": [
+        "ChartAnimationWrapper",
+        "RechartsAnimationConfig"
+      ],
+      "acceptance_criteria": [
+        "Donut chart animates with 800ms ease-out radial sweep",
+        "Bar and Area charts smoothly grow from baseline with staggered timing",
+        "Radar chart scales out gracefully from origin point",
+        "Animations trigger only once when entering viewport to prevent distraction"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Low",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-22",
+      "due_date": "2026-08-24",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-6.6"
+      ],
+      "labels": [
+        "frontend",
+        "animation",
+        "analytics"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-79",
+      "task_number": "AIMF-FE-9.4",
+      "title": "AIMF Frontend \u2014 [9.4] Sidebar collapse animation",
+      "phase": "PHASE 9 \u2014 ANIMATIONS & POLISH",
+      "user_story": "As a user, I want a smooth sidebar collapse animation so that I can expand my workspace seamlessly without abrupt layout shifts.",
+      "description": "Implement Framer Motion width transition (240px to 64px) with icon-only alignment, text fade, and chevron button rotation.",
+      "components": [
+        "SidebarCollapseMotion",
+        "NavIconTransition",
+        "ChevronRotation"
+      ],
+      "acceptance_criteria": [
+        "Sidebar animates width between 240px and 64px smoothly in 250ms",
+        "Navigation labels fade out cleanly without text wrapping artifacts",
+        "Collapse toggle button rotates chevron 180 degrees",
+        "Main content layout adjusts margins smoothly without horizontal scrollbars"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-21",
+      "due_date": "2026-08-22",
+      "duration": "2 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-1.1"
+      ],
+      "labels": [
+        "frontend",
+        "animation",
+        "component"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-08-29T18:00:00Z",
+      "resolved_at": "2026-08-29T18:00:00Z",
+      "comments": []
+    },
+    {
+      "key": "AIMF-80",
+      "task_number": "AIMF-FE-9.5",
+      "title": "AIMF Frontend \u2014 [9.5] Toast notifications",
+      "phase": "PHASE 9 \u2014 ANIMATIONS & POLISH",
+      "user_story": "As a user, I want animated toast alerts with swipe-to-dismiss so that I am notified of background events without workflow disruption.",
+      "description": "Construct toast stack controller with slide-in from bottom-right, progress countdown bar, and swipe-to-dismiss gesture support.",
+      "components": [
+        "ToastManager",
+        "ToastAnimationContainer",
+        "SwipeToDismiss"
+      ],
+      "acceptance_criteria": [
+        "Toasts enter with spring slide-in and exit with fade/swipe gesture",
+        "Visual progress countdown line showing time until auto-dismiss",
+        "Multiple toasts stack vertically with smooth position reflow",
+        "Accessible aria-live region announces alerts to screen readers"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-22",
+      "due_date": "2026-08-24",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-2.6"
+      ],
+      "labels": [
+        "frontend",
+        "animation",
+        "component"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-81",
+      "task_number": "AIMF-FE-10.1",
+      "title": "AIMF Frontend \u2014 [10.1] Mobile layout audit",
+      "phase": "PHASE 10 \u2014 RESPONSIVENESS",
+      "user_story": "As a mobile user, I want all pages to adapt to small screens (<640px) so that I can inspect memories and dashboard metrics on my phone.",
+      "description": "Perform comprehensive mobile viewport audit ensuring single-column stacks, readable typography, and 44px+ minimum touch targets.",
+      "components": [
+        "MobileStyles",
+        "TouchTargetAudit",
+        "StackedLayouts"
+      ],
+      "acceptance_criteria": [
+        "All grid layouts collapse cleanly to single column on viewports <640px",
+        "Touch targets on buttons, toggles, and filters meet 44x44px minimum sizing",
+        "No horizontal viewport scrolling or clipped charts on mobile devices",
+        "Tables adapt with horizontal scroll indicators or responsive card mode"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-23",
+      "due_date": "2026-08-25",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-7.4",
+        "AIMF-FE-8.5"
+      ],
+      "labels": [
+        "frontend",
+        "responsive"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-82",
+      "task_number": "AIMF-FE-10.2",
+      "title": "AIMF Frontend \u2014 [10.2] Tablet layout audit",
+      "phase": "PHASE 10 \u2014 RESPONSIVENESS",
+      "user_story": "As a tablet user, I want medium viewport (640px\u20131024px) optimization so that two-column grids and chart sidebars look balanced.",
+      "description": "Audit tablet layouts (iPad / Android tablets) ensuring two-column dashboard cards, side-by-side lab panels, and comfortable padding.",
+      "components": [
+        "TabletLayoutStyles",
+        "TwoColumnGrids",
+        "AdaptiveNavigation"
+      ],
+      "acceptance_criteria": [
+        "Dashboard metrics display in 2x2 grid on medium viewports",
+        "Memory Lab displays input and analysis pipeline side-by-side or stacked cleanly",
+        "Sidebar collapses to compact icon mode by default on tablet viewports",
+        "Charts resize accurately without overlapping legends or axis labels"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-24",
+      "due_date": "2026-08-26",
+      "duration": "3 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-7.4",
+        "AIMF-FE-8.5"
+      ],
+      "labels": [
+        "frontend",
+        "responsive"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-83",
+      "task_number": "AIMF-FE-10.3",
+      "title": "AIMF Frontend \u2014 [10.3] Mobile sidebar",
+      "phase": "PHASE 10 \u2014 RESPONSIVENESS",
+      "user_story": "As a mobile user, I want a slide-out drawer sidebar with hamburger toggle so that I can navigate pages without consuming screen space.",
+      "description": "Implement slide-in drawer sidebar for mobile devices with semi-transparent backdrop blur and header hamburger menu trigger.",
+      "components": [
+        "MobileSidebarDrawer",
+        "BackdropOverlay",
+        "HamburgerButton"
+      ],
+      "acceptance_criteria": [
+        "Hamburger icon in top header triggers slide-in navigation drawer",
+        "Backdrop overlay blurs background and closes sidebar on tap",
+        "Navigating to any route automatically closes mobile sidebar",
+        "Smooth Framer Motion slide-in and exit animations"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-23",
+      "due_date": "2026-08-24",
+      "duration": "2 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-9.4"
+      ],
+      "labels": [
+        "frontend",
+        "responsive",
+        "component"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-08-29T18:00:00Z",
+      "resolved_at": "2026-08-29T18:00:00Z",
+      "comments": []
+    },
+    {
+      "key": "AIMF-84",
+      "task_number": "AIMF-FE-11.1",
+      "title": "AIMF Frontend \u2014 [11.1] Route-level code splitting",
+      "phase": "PHASE 11 \u2014 PERFORMANCE",
+      "user_story": "As a user, I want lazy-loaded page routes so that the initial application bundle loads in under 1 second without downloading unused code.",
+      "description": "Implement React.lazy dynamic imports for all public and authenticated routes with Suspense fallback loader.",
+      "components": [
+        "React.lazy Bundles",
+        "SuspenseBoundary",
+        "PageLoaderSkeleton"
+      ],
+      "acceptance_criteria": [
+        "All page routes dynamically imported with React.lazy in AppRouter",
+        "Initial JavaScript bundle size reduced by >60% compared to monolithic bundle",
+        "PageLoader component displays centered spinner during chunk retrieval",
+        "Vite rollup chunking splits vendor libraries (Recharts, Lucide, Framer Motion) cleanly"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "COMPLETED",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-24",
+      "due_date": "2026-08-25",
+      "duration": "2 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-1.1"
+      ],
+      "labels": [
+        "frontend",
+        "performance"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-08-29T18:00:00Z",
+      "resolved_at": "2026-08-29T18:00:00Z",
+      "comments": []
+    },
+    {
+      "key": "AIMF-85",
+      "task_number": "AIMF-FE-11.2",
+      "title": "AIMF Frontend \u2014 [11.2] React.memo on expensive components",
+      "phase": "PHASE 11 \u2014 PERFORMANCE",
+      "user_story": "As a user, I want memoized heavy components so that dashboard interactions and typing in Memory Lab remain at 60fps without lag.",
+      "description": "Audit React DevTools flamegraph and wrap expensive chart wrappers, memory cards, and factor score bars in React.memo with custom equality checks.",
+      "components": [
+        "MemoizedChartComponents",
+        "PureCardWrappers",
+        "RenderProfiler"
+      ],
+      "acceptance_criteria": [
+        "React.memo applied to Recharts wrappers, Timeline nodes, and Memory Cards",
+        "Zero unnecessary re-renders in Memory Vault when typing in search input",
+        "Profiler confirms render duration <16ms per frame during user interactions",
+        "Pure component props validated to avoid accidental object reference breaks"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-25",
+      "due_date": "2026-08-26",
+      "duration": "2 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-2.7",
+        "AIMF-FE-6.6"
+      ],
+      "labels": [
+        "frontend",
+        "performance"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-86",
+      "task_number": "AIMF-FE-11.3",
+      "title": "AIMF Frontend \u2014 [11.3] useMemo/useCallback audit",
+      "phase": "PHASE 11 \u2014 PERFORMANCE",
+      "user_story": "As a developer, I want memoized calculation pipelines and stable callback handlers so that complex AMGS math does not block UI threads.",
+      "description": "Audit hook usage across all pages, memoizing AMGS score factor calculations, filter/sort transforms, and event handlers with useMemo and useCallback.",
+      "components": [
+        "OptimizedCalculations",
+        "StableCallbacks",
+        "StoreSelectors"
+      ],
+      "acceptance_criteria": [
+        "Memory Vault search, filter, and sort transforms wrapped in useMemo",
+        "AMGS composite score computation logic memoized in Memory Lab",
+        "Event handler callbacks passed to child components stabilized with useCallback",
+        "Zustand store selectors fine-tuned to prevent full-store subscription re-renders"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-25",
+      "due_date": "2026-08-26",
+      "duration": "2 days",
+      "week": "Week 6",
+      "dependencies": [
+        "AIMF-FE-4.6",
+        "AIMF-FE-5.6"
+      ],
+      "labels": [
+        "frontend",
+        "performance"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-87",
+      "task_number": "AIMF-FE-12.1",
+      "title": "AIMF Frontend \u2014 [12.1] UI component unit tests (Vitest + Testing Library)",
+      "phase": "PHASE 12 \u2014 TESTING",
+      "user_story": "As a developer, I want unit tests for shared UI primitives so that future refactoring cannot introduce regressions into buttons, cards, or inputs.",
+      "description": "Configure Vitest + React Testing Library suite and implement unit tests covering variant rendering, click handlers, accessibility roles, and disabled states.",
+      "components": [
+        "VitestConfig",
+        "ComponentUnitTests",
+        "TestingLibraryMocks"
+      ],
+      "acceptance_criteria": [
+        "Vitest + jsdom test harness configured in frontend directory",
+        "Unit tests for Button, Badge, Modal, Input, and Table components",
+        "Simulates user events (click, typing, keydown) with verified DOM assertions",
+        ">80% code coverage across core shared UI primitives"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-26",
+      "due_date": "2026-08-28",
+      "duration": "3 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-2.1",
+        "AIMF-FE-2.2",
+        "AIMF-FE-2.3"
+      ],
+      "labels": [
+        "frontend",
+        "testing"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-88",
+      "task_number": "AIMF-FE-12.2",
+      "title": "AIMF Frontend \u2014 [12.2] Mock service tests",
+      "phase": "PHASE 12 \u2014 TESTING",
+      "user_story": "As a developer, I want tests for mock service functions so that data retrieval, memory analysis simulation, and mutation logic are proven reliable.",
+      "description": "Implement automated tests verifying mock service functions: memory filtering, AMGS score calculation logic, latency simulation, and local storage sync.",
+      "components": [
+        "ServiceUnitTests",
+        "PipelineSimulationTests",
+        "StateMutationTests"
+      ],
+      "acceptance_criteria": [
+        "Tests verify getMemories returns correctly filtered and sorted collections",
+        "Tests verify analyzeMemory correctly outputs 11 stage results and AMGS composite score",
+        "Tests verify error handling when invalid or empty payloads are provided",
+        "All service tests run and pass cleanly in CI pipeline"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-26",
+      "due_date": "2026-08-28",
+      "duration": "3 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-2.8"
+      ],
+      "labels": [
+        "frontend",
+        "testing"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-89",
+      "task_number": "AIMF-FE-12.3",
+      "title": "AIMF Frontend \u2014 [12.3] Route navigation tests",
+      "phase": "PHASE 12 \u2014 TESTING",
+      "user_story": "As a developer, I want automated route navigation smoke tests so that all 10 page URLs resolve correctly without broken links or white screens.",
+      "description": "Write integration tests testing React Router navigation between Landing, Dashboard, Lab, Vault, Analytics, Timeline, Privacy, Comparison, Settings, and About.",
+      "components": [
+        "RouteIntegrationTests",
+        "NavigationSmokeTests",
+        "NotFoundTest"
+      ],
+      "acceptance_criteria": [
+        "Tests verify every route renders its expected heading and page content",
+        "Tests verify sidebar navigation links transition URL and active state correctly",
+        "Tests verify invalid routes render the custom 404 NotFoundPage component",
+        "Tests assert that document title updates appropriately on route navigation"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-27",
+      "due_date": "2026-08-28",
+      "duration": "2 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-11.1",
+        "AIMF-FE-7.4"
+      ],
+      "labels": [
+        "frontend",
+        "testing"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-90",
+      "task_number": "AIMF-FE-13.1",
+      "title": "AIMF Frontend \u2014 [13.1] Accessibility audit (ARIA labels, keyboard nav)",
+      "phase": "PHASE 13 \u2014 FINAL POLISH",
+      "user_story": "As an assistive technology user, I want full ARIA attributes and keyboard navigation so that I can operate the entire firewall application with keyboard or screen reader.",
+      "description": "Perform WCAG 2.1 AA accessibility audit, adding missing aria-labels, managing focus traps in modals, and verifying tab-order across all interactive elements.",
+      "components": [
+        "ARIAAttributes",
+        "FocusManagement",
+        "KeyboardNavMatrix"
+      ],
+      "acceptance_criteria": [
+        "All interactive elements accessible via Tab and Enter/Space keyboard navigation",
+        "Focus ring indicators clearly visible on all focused controls in dark mode",
+        "Color contrast ratios meet WCAG AA standards (>=4.5:1 for normal text)",
+        "Screen readers accurately announce dynamic pipeline analysis and toast messages"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-27",
+      "due_date": "2026-08-29",
+      "duration": "3 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-10.1",
+        "AIMF-FE-12.1"
+      ],
+      "labels": [
+        "frontend",
+        "accessibility"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-91",
+      "task_number": "AIMF-FE-13.2",
+      "title": "AIMF Frontend \u2014 [13.2] Visual consistency review",
+      "phase": "PHASE 13 \u2014 FINAL POLISH",
+      "user_story": "As a designer, I want a pixel-perfect visual consistency review so that padding, border radiuses, typography, and colors are uniform across the entire app.",
+      "description": "Review every page for padding consistency (p-6/p-8), badge border radii, chart color mapping, button alignments, and dark mode contrast.",
+      "components": [
+        "VisualAlignmentReview",
+        "SpacingConsistency",
+        "TypographyScaleAudit"
+      ],
+      "acceptance_criteria": [
+        "All page containers utilize consistent root padding and header heights",
+        "Uniform border radiuses applied across cards (rounded-2xl), badges (rounded-full), and buttons",
+        "Consistent decision color tokens (Store=emerald, Encrypt=amber, Forget=rose, Compress=cyan)",
+        "No visual alignment flaws, orphan text, or overlapping elements on any screen"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Lipun Behera",
+        "email": "lipun@aimf.dev",
+        "github": "lipunbehera"
+      },
+      "start_date": "2026-08-27",
+      "due_date": "2026-08-29",
+      "duration": "3 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-9.5",
+        "AIMF-FE-10.2"
+      ],
+      "labels": [
+        "frontend",
+        "design"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-92",
+      "task_number": "AIMF-FE-13.3",
+      "title": "AIMF Frontend \u2014 [13.3] Code quality review",
+      "phase": "PHASE 13 \u2014 FINAL POLISH",
+      "user_story": "As a tech lead, I want strict TypeScript and linting verification so that the frontend codebase is clean, well-typed, and maintainable.",
+      "description": "Run TypeScript compiler in strict mode, execute ESLint and Prettier formatting checks, remove unused imports, and eliminate any remaining 'any' types.",
+      "components": [
+        "ESLintAudit",
+        "TypeScriptStrictAudit",
+        "UnusedCodePrune"
+      ],
+      "acceptance_criteria": [
+        "Zero TypeScript compiler errors across all frontend files (`tsc --noEmit`)",
+        "Zero ESLint warnings or errors (`npm run lint`)",
+        "No unused variables, orphan imports, or redundant console.log statements",
+        "Clean code comments and typed interfaces for all exported functions"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "High",
+      "assignee": {
+        "name": "Suraj Meher",
+        "email": "surajmeher@aimf.dev",
+        "github": "Surajmeher1"
+      },
+      "start_date": "2026-08-28",
+      "due_date": "2026-08-29",
+      "duration": "2 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-11.3",
+        "AIMF-FE-12.3"
+      ],
+      "labels": [
+        "frontend",
+        "performance"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    },
+    {
+      "key": "AIMF-93",
+      "task_number": "AIMF-FE-13.4",
+      "title": "AIMF Frontend \u2014 [13.4] Documentation update",
+      "phase": "PHASE 13 \u2014 FINAL POLISH",
+      "user_story": "As an incoming developer, I want updated frontend documentation so that I can easily set up, develop, and extend the AIMF user interface.",
+      "description": "Update frontend/README.md, TASKS.md, and architecture references detailing folder organization, state management patterns, and mock service workflows.",
+      "components": [
+        "FrontendREADME",
+        "ComponentDocumentation",
+        "ArchitectureDiagrams"
+      ],
+      "acceptance_criteria": [
+        "frontend/README.md updated with component directory guide and development commands",
+        "TASKS.md synchronized with final completed/remaining roadmap status",
+        "Clear setup instructions for running mock mode vs live backend API",
+        "Changelog entry added summarizing frontend roadmap completion"
+      ],
+      "definition_of_done": [
+        "Implementation completed",
+        "UI works correctly",
+        "Responsive behavior verified",
+        "No TypeScript errors",
+        "Existing functionality not broken",
+        "Relevant tests added/updated where applicable",
+        "Code reviewed",
+        "Jira task updated"
+      ],
+      "status": "TO DO",
+      "type": "Task",
+      "priority": "Medium",
+      "assignee": {
+        "name": "Sourav Karan Kisku",
+        "email": "sourav@aimf.dev",
+        "github": "souravkarankisku"
+      },
+      "start_date": "2026-08-28",
+      "due_date": "2026-08-29",
+      "duration": "2 days",
+      "week": "Week 7",
+      "dependencies": [
+        "AIMF-FE-13.1",
+        "AIMF-FE-13.2",
+        "AIMF-FE-13.3"
+      ],
+      "labels": [
+        "frontend"
+      ],
+      "created_at": "2026-07-15T09:00:00Z",
+      "updated_at": "2026-07-15T09:00:00Z",
+      "resolved_at": null,
+      "comments": []
+    }
+  ]
+}

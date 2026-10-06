@@ -42,7 +42,7 @@ class Settings(BaseSettings):
         description="Logging verbosity",
     )
     cors_origins: str = Field(
-        default="http://localhost:5173",
+        default="http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://localhost:4173",
         description="Comma-separated allowed CORS origins",
     )
     api_version: str = Field(default="1.0.0", description="API version string")
@@ -78,6 +78,42 @@ class Settings(BaseSettings):
     embedding_dim: int = Field(
         default=384,
         description="Embedding dimension (must match embedding_model output)",
+    )
+
+    # ─── LLM / Generative AI ─────────────────────────────────────────────────
+    llm_provider: str = Field(
+        default="none",
+        description=(
+            "LLM provider for chatbot responses: 'gemini', 'openai', or 'none' (fallback). "
+            "When 'none', a built-in rule-based responder is used (no API key needed)."
+        ),
+    )
+    llm_api_key: str = Field(
+        default="",
+        description="API key for the LLM provider. Never logged or exposed.",
+    )
+    llm_model: str = Field(
+        default="",
+        description=(
+            "Model name to use. Defaults: gemini-2.0-flash (Gemini), gpt-4o-mini (OpenAI). "
+            "Leave blank to use the provider's default."
+        ),
+    )
+    llm_max_tokens: int = Field(
+        default=512, ge=64, le=4096,
+        description="Maximum tokens for LLM response generation.",
+    )
+    llm_temperature: float = Field(
+        default=0.7, ge=0.0, le=2.0,
+        description="LLM sampling temperature (0.0 = deterministic, higher = more creative).",
+    )
+    llm_context_messages: int = Field(
+        default=20, ge=1, le=100,
+        description="Maximum number of recent chat messages to include as LLM context.",
+    )
+    llm_base_url: str = Field(
+        default="",
+        description="Optional custom base URL for OpenAI-compatible LLM endpoints (e.g. Groq, Ollama, OpenRouter).",
     )
 
     # ─── AMGS Weights (v1) ───────────────────────────────────────────────────
@@ -170,6 +206,16 @@ class Settings(BaseSettings):
     jwt_refresh_expiry_days: int = Field(
         default=7, ge=1,
         description="Refresh token expiry in days",
+    )
+
+    # ─── Default Admin Account ───────────────────────────────────────────────
+    default_admin_email: str = Field(
+        default="admin@aimf.dev",
+        description="Email for the default admin account seeded on first startup",
+    )
+    default_admin_password: str = Field(
+        default="Admin123!",
+        description="Password for the default admin account seeded on first startup",
     )
 
     # ─── Validators ──────────────────────────────────────────────────────────

@@ -23,6 +23,9 @@ Production:
 
 from __future__ import annotations
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import asyncio
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
@@ -56,10 +59,33 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     logger.info("Encryption key validated")
 
     # ── Step 3: Database ──────────────────────────────────────────────────────
-    from core.database import create_all_tables
+    from core.database import create_all_tables, AsyncSessionLocal
     import models  # noqa: F401 — registers all ORM models with Base.metadata
     await create_all_tables()
     logger.info("Database tables ready", extra={"url": settings.database_url.split("///")[0]})
+
+    # ── Step 3b: Seed default admin account ──────────────────────────────────
+    from sqlalchemy import select
+    from models.user import User
+    from core.security import hash_password
+
+    async with AsyncSessionLocal() as session:
+        result = await session.execute(
+            select(User).where(User.email == settings.default_admin_email)
+        )
+        if result.scalar_one_or_none() is None:
+            admin = User(
+                email=settings.default_admin_email,
+                password_hash=hash_password(settings.default_admin_password),
+                full_name="AIMF Administrator",
+                role="ADMIN",
+                is_active=True,
+            )
+            session.add(admin)
+            await session.commit()
+            logger.info("Default admin account created", extra={"email": settings.default_admin_email})
+        else:
+            logger.info("Default admin account already exists")
 
     # ── Step 4: FAISS Index ───────────────────────────────────────────────────
     from core.faiss_index import FAISSIndex
@@ -146,9 +172,13 @@ def create_app() -> FastAPI:
 
     # ── Routers ───────────────────────────────────────────────────────────────
     from api.v1.health import router as health_router
+    from api.v1.auth   import router as auth_router
     from api.v1.memory import router as memory_router
+    from api.v1.chat   import router as chat_router
     app.include_router(health_router, prefix="/api/v1")
+    app.include_router(auth_router,   prefix="/api/v1")
     app.include_router(memory_router, prefix="/api/v1")
+    app.include_router(chat_router,   prefix="/api/v1")
 
     from api.v1.baseline  import router as baseline_router
     from api.v1.research  import router as research_router
@@ -191,5 +221,5 @@ def create_app() -> FastAPI:
 
 
 # ─── Application Instance ─────────────────────────────────────────────────────
-# Used by uvicorn: uvicorn main:app
+# Used by uvicorn: uvicorn main:app --reload --port 8000
 app = create_app()

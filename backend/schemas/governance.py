@@ -11,15 +11,19 @@ from enum import Enum
 
 
 class GovernanceDecision(str, Enum):
-    """The 8 governance decisions AIMF can make for any input."""
-    REJECT              = "REJECT"
-    STORE_TEMPORARY     = "STORE_TEMPORARY"
-    STORE_LONG_TERM     = "STORE_LONG_TERM"
-    SUMMARIZE_AND_STORE = "SUMMARIZE_AND_STORE"
-    ENCRYPT_AND_STORE   = "ENCRYPT_AND_STORE"
-    MERGE_WITH_EXISTING = "MERGE_WITH_EXISTING"
-    UPDATE_EXISTING     = "UPDATE_EXISTING"
-    FORGET              = "FORGET"
+    """The governance decisions AIMF can make for any input.
+
+    Values match exactly what the decision_engine.py outputs — do NOT rename
+    without updating the engine, explainer, and memory API in lockstep.
+    """
+    REJECT          = "REJECT"
+    REJECT_PRIVACY  = "REJECT_PRIVACY"
+    STORE           = "STORE"
+    STORE_TEMPORARY = "STORE_TEMPORARY"
+    STORE_LONG_TERM = "STORE_LONG_TERM"
+    STORE_ENCRYPT   = "STORE_ENCRYPT"
+    SUMMARIZE       = "SUMMARIZE"
+    FORGET          = "FORGET"
 
 
 class SensitivityLevel(str, Enum):

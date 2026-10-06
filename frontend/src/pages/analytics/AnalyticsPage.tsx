@@ -3,7 +3,7 @@ import {
   AreaChart, Area, BarChart, Bar,
   PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, Legend,
+  ResponsiveContainer,
 } from 'recharts'
 import { BarChart3, TrendingUp, PieChart as PieIcon, Calendar } from 'lucide-react'
 import { useAnalyticsTrends, useAnalyticsBreakdowns } from '@/hooks/useAIMF'

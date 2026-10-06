@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { Lock, Eye, Hash } from 'lucide-react'
+import { Lock, Eye } from 'lucide-react'
 import { DecisionBadge, SensitivityBadge, ProgressBar } from '@/components/ui'
 import type { Memory } from '@/types'
 import clsx from 'clsx'
@@ -20,10 +20,6 @@ const CATEGORY_COLORS: Record<string, string> = {
 }
 
 export default function MemoryCard({ memory, onClick }: MemoryCardProps) {
-  const amgsColor =
-    memory.amgs_score >= 0.7 ? '#10b981' :
-    memory.amgs_score >= 0.4 ? '#f59e0b' : '#ef4444'
-
   return (
     <div
       onClick={onClick}

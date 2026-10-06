@@ -2,11 +2,15 @@ import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import RootLayout from '@/layouts/RootLayout'
 import PageLoader from '@/components/common/PageLoader'
+import ProtectedRoute from '@/components/common/ProtectedRoute'
 
 // ─── Public pages (no sidebar) ────────────────────────────────────────────────
 const Landing  = lazy(() => import('@/pages/landing/LandingPage'))
 const Login    = lazy(() => import('@/pages/auth/LoginPage'))
 const Register = lazy(() => import('@/pages/auth/RegisterPage'))
+
+// ─── USER chatbot (own layout) ────────────────────────────────────────────────
+const ChatBot = lazy(() => import('@/pages/chat/ChatBotPage'))
 
 // ─── App pages (inside RootLayout with sidebar) ───────────────────────────────
 const Dashboard = lazy(() => import('@/pages/dashboard/DashboardPage'))
@@ -29,17 +33,24 @@ export default function AppRouter() {
         <Route path="/login"    element={<Login />}    />
         <Route path="/register" element={<Register />} />
 
-        {/* ── App (with sidebar + header) ─────────────────────────── */}
-        <Route element={<RootLayout />}>
-          <Route path="/dashboard" element={<Dashboard />}  />
-          <Route path="/lab"       element={<MemoryLab />}  />
-          <Route path="/vault"     element={<MemoryVault />} />
-          <Route path="/analytics" element={<Analytics />}  />
-          <Route path="/timeline"  element={<Timeline />}   />
-          <Route path="/privacy"   element={<Privacy />}    />
-          <Route path="/compare"   element={<Comparison />} />
-          <Route path="/settings"  element={<Settings />}   />
-          <Route path="/about"     element={<About />}      />
+        {/* ── USER chatbot (requires authenticated session) ────────── */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/chat" element={<ChatBot />} />
+        </Route>
+
+        {/* ── ADMIN app (requires authenticated ADMIN role) ────────── */}
+        <Route element={<ProtectedRoute requiredRole="ADMIN" />}>
+          <Route element={<RootLayout />}>
+            <Route path="/dashboard" element={<Dashboard />}  />
+            <Route path="/lab"       element={<MemoryLab />}  />
+            <Route path="/vault"     element={<MemoryVault />} />
+            <Route path="/analytics" element={<Analytics />}  />
+            <Route path="/timeline"  element={<Timeline />}   />
+            <Route path="/privacy"   element={<Privacy />}    />
+            <Route path="/compare"   element={<Comparison />} />
+            <Route path="/settings"  element={<Settings />}   />
+            <Route path="/about"     element={<About />}      />
+          </Route>
         </Route>
 
         {/* ── 404 ─────────────────────────────────────────────────── */}
@@ -48,3 +59,4 @@ export default function AppRouter() {
     </Suspense>
   )
 }
+

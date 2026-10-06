@@ -47,7 +47,7 @@ def client():
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
 
-    asyncio.get_event_loop().run_until_complete(create_tables())
+    asyncio.run(create_tables())
 
     with TestClient(app, raise_server_exceptions=True) as c:
         yield c

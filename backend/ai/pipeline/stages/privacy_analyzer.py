@@ -55,7 +55,23 @@ _CRITICAL_PATTERNS: list[PrivacyPattern] = [
     PrivacyPattern(
         name="SSN_US",
         regex=re.compile(r"\b(?:\d{3}-\d{2}-\d{4}|\d{9})\b"),
-        weight=0.85,
+        weight=0.95,
+    ),
+    PrivacyPattern(
+        name="AADHAAR_NUMBER",
+        regex=re.compile(r"\b(?:[2-9]{1}[0-9]{3}[ -]?[0-9]{4}[ -]?[0-9]{4}|aadhar|aadhaar)\b", re.IGNORECASE),
+        weight=0.95,
+    ),
+    PrivacyPattern(
+        name="CREDIT_CARD",
+        regex=re.compile(
+            r"\b(?:4[0-9]{3}(?:[ -]?[0-9]{4}){3}|"          # Visa with spaces/hyphens
+            r"5[1-5][0-9]{2}(?:[ -]?[0-9]{4}){3}|"          # MC with spaces/hyphens
+            r"3[47][0-9]{2}(?:[ -]?[0-9]{6}[ -]?[0-9]{5})|" # Amex with spaces/hyphens
+            r"6(?:011|5[0-9]{2})(?:[ -]?[0-9]{4}){3}|"      # Discover with spaces/hyphens
+            r"[0-9]{4}[ -][0-9]{4}[ -][0-9]{4}[ -][0-9]{4})\b", # Generic formatted 16-digit card
+        ),
+        weight=0.95,
     ),
     PrivacyPattern(
         name="MEDICAL_KEYWORD",
@@ -64,7 +80,7 @@ _CRITICAL_PATTERNS: list[PrivacyPattern] = [
             r"icd-?\d{1,2}|diagnostic|treatment\s+plan)\b",
             re.IGNORECASE,
         ),
-        weight=0.70,
+        weight=0.75,
     ),
     PrivacyPattern(
         name="BIOMETRIC",
@@ -72,25 +88,20 @@ _CRITICAL_PATTERNS: list[PrivacyPattern] = [
             r"\b(fingerprint|retinal\s+scan|dna\s+sequence|biometric)\b",
             re.IGNORECASE,
         ),
-        weight=0.80,
+        weight=0.90,
     ),
     PrivacyPattern(
         name="PASSPORT_NUMBER",
         regex=re.compile(r"\b[A-Z]{1,2}[0-9]{6,9}\b"),
-        weight=0.75,
+        weight=0.85,
     ),
 ]
 
 _HIGH_PATTERNS: list[PrivacyPattern] = [
     PrivacyPattern(
-        name="CREDIT_CARD",
-        regex=re.compile(
-            r"\b(?:4[0-9]{12}(?:[0-9]{3})?|"       # Visa
-            r"5[1-5][0-9]{14}|"                      # MC
-            r"3[47][0-9]{13}|"                       # Amex
-            r"6(?:011|5[0-9]{2})[0-9]{12})\b"       # Discover
-        ),
-        weight=0.75,
+        name="FINANCIAL_CARD_KEYWORD",
+        regex=re.compile(r"\b(?:credit\s*card|debit\s*card|hdfc\s*(?:credit|debit)|cvv|cvc)\b", re.IGNORECASE),
+        weight=0.85,
     ),
     PrivacyPattern(
         name="API_KEY_SECRET",
@@ -213,21 +224,26 @@ def _sensitivity_from_risk(risk: float) -> str:
         return "LOW"
 
 
-def _category_from_risk_and_sensitivity(risk: float, sensitivity: str) -> str:
+def _category_from_risk_and_sensitivity(
+    risk: float,
+    sensitivity: str,
+    matched_patterns: list[str] | None = None,
+) -> str:
     """
-    Derive MemoryCategory from risk and sensitivity.
+    Derive MemoryCategory from risk, sensitivity, and matched privacy patterns.
 
-    - CRITICAL / HIGH → PRIVATE
-    - MEDIUM + PERSON entity → PRIVATE
-    - LOW + structural data → TECHNICAL
-    - Otherwise → GENERAL
+    Valid categories: CREDENTIAL, FINANCIAL, HEALTH, PERSONAL_FACT, GENERAL, etc.
     """
-    if sensitivity in ("CRITICAL", "HIGH"):
-        return "PRIVATE"
-    elif sensitivity == "MEDIUM":
-        return "PRIVATE"
-    else:
-        return "GENERAL"
+    patterns = matched_patterns or []
+    if any(p in ("CREDIT_CARD", "BANK_ACCOUNT") for p in patterns):
+        return "FINANCIAL"
+    if any(p in ("API_KEY_SECRET", "PASSWORD_MENTION", "JWT_TOKEN", "PRIVATE_KEY_PEM") for p in patterns):
+        return "CREDENTIAL"
+    if any(p in ("MEDICAL_KEYWORD", "BIOMETRIC") for p in patterns):
+        return "HEALTH"
+    if sensitivity in ("CRITICAL", "HIGH", "MEDIUM"):
+        return "PERSONAL_FACT"
+    return "GENERAL"
 
 
 def run(ctx: PipelineContext) -> PipelineContext:
@@ -239,7 +255,7 @@ def run(ctx: PipelineContext) -> PipelineContext:
 
         risk, matched_patterns = _compute_privacy_risk(text, ctx.entity_labels)
         sensitivity = _sensitivity_from_risk(risk)
-        category = _category_from_risk_and_sensitivity(risk, sensitivity)
+        category = _category_from_risk_and_sensitivity(risk, sensitivity, matched_patterns)
 
         ctx.privacy_risk = risk
         ctx.sensitivity = sensitivity

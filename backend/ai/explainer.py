@@ -96,20 +96,27 @@ def explain(ctx: PipelineContext) -> PipelineContext:
         from core.config import settings
         t = settings
 
-        template = _TEMPLATES.get(ctx.decision, "Decision: {decision}. AMGS: {amgs:.3f}.")
+        if ctx.injection_detected and ctx.decision == "REJECT":
+            patterns_str = _format_patterns(ctx.injection_patterns)
+            rationale = (
+                f"Memory REJECTED — detected prompt manipulation or adversarial governance bypass attempt ({patterns_str}). "
+                "User prompts and generative AI instructions cannot modify AIMF governance policies, alter AMGS scores, or force memory persistence."
+            )
+        else:
+            template = _TEMPLATES.get(ctx.decision, "Decision: {decision}. AMGS: {amgs:.3f}.")
 
-        rationale = template.format(
-            decision=ctx.decision,
-            amgs=ctx.amgs_score,
-            privacy_risk=ctx.privacy_risk,
-            patterns=_format_patterns(ctx.privacy_patterns),
-            threshold=t.threshold_reject_priv,
-            threshold_forget=t.threshold_forget,
-            threshold_store=t.threshold_store,
-            threshold_long_term=t.threshold_long_term,
-            dominant=ctx.dominant_factor,
-            expires_at=ctx.expires_at or "not set",
-        )
+            rationale = template.format(
+                decision=ctx.decision,
+                amgs=ctx.amgs_score,
+                privacy_risk=ctx.privacy_risk,
+                patterns=_format_patterns(ctx.privacy_patterns),
+                threshold=t.threshold_reject_priv,
+                threshold_forget=t.threshold_forget,
+                threshold_store=t.threshold_store,
+                threshold_long_term=t.threshold_long_term,
+                dominant=ctx.dominant_factor,
+                expires_at=ctx.expires_at or "not set",
+            )
 
         ctx.rationale = rationale
 

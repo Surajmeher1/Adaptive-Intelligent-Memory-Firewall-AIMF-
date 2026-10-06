@@ -71,6 +71,16 @@ def decide(ctx: PipelineContext) -> PipelineContext:
             _log(ctx)
             return ctx
 
+        # ── Priority Override 1b: Adversarial Prompt Injection / Governance Override ──
+        if ctx.injection_detected:
+            ctx.decision = "REJECT"
+            patterns_desc = ", ".join(ctx.injection_patterns) if ctx.injection_patterns else "override command"
+            ctx.decision_boundary = (
+                f"Adversarial governance manipulation attempt rejected: {patterns_desc}"
+            )
+            _log(ctx)
+            return ctx
+
         # ── Priority Override 2: Score too low (pure rejection) ───────────────
         if score < t.threshold_forget:
             ctx.decision = "REJECT"

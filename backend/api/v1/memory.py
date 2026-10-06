@@ -20,7 +20,7 @@ import time
 import uuid
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi import APIRouter, HTTPException, Query, Request, Response, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -54,7 +54,17 @@ logger = get_logger(__name__)
 
 router = APIRouter(tags=["memory"])
 
-_STORAGE_DECISIONS = {"STORE", "STORE_LONG_TERM", "STORE_ENCRYPT", "STORE_TEMPORARY", "SUMMARIZE"}
+_STORAGE_DECISIONS = {
+    "STORE",
+    "STORE_LONG_TERM",
+    "STORE_ENCRYPT",
+    "ENCRYPT_AND_STORE",
+    "STORE_TEMPORARY",
+    "SUMMARIZE",
+    "SUMMARIZE_AND_STORE",
+    "UPDATE_EXISTING",
+    "MERGE_WITH_EXISTING",
+}
 _REJECT_DECISIONS  = {"REJECT", "REJECT_PRIVACY"}
 
 
@@ -131,8 +141,8 @@ def _memory_to_out(mem: Memory, content_override: str | None = None) -> MemoryOu
         status=mem.status,                                       # type: ignore[arg-type]
         is_encrypted=mem.is_encrypted,
         expires_at=mem.expires_at,
-        created_at=mem.created_at.isoformat() if mem.created_at else "",
-        last_accessed=mem.last_accessed.isoformat() if mem.last_accessed else "",
+        created_at=mem.created_at.isoformat() if hasattr(mem.created_at, "isoformat") else str(mem.created_at or ""),
+        last_accessed=mem.last_accessed.isoformat() if hasattr(mem.last_accessed, "isoformat") else str(mem.last_accessed or ""),
         access_count=mem.access_count,
         version=mem.version,
         parent_id=mem.parent_id,
@@ -156,23 +166,48 @@ async def _persist_memory(
     existing = await db.execute(
         select(Memory).where(
             Memory.content_hash == ctx.content_hash,
-            Memory.status == "ACTIVE",
         )
     )
     existing_mem = existing.scalar_one_or_none()
     if existing_mem is not None:
-        existing_mem.touch()
-        event = LifecycleEvent.accessed(
-            memory_id=existing_mem.id,
-            amgs_score=existing_mem.amgs_score,
-        )
-        db.add(event)
-        return existing_mem, True
+        if existing_mem.status != "ACTIVE":
+            existing_mem.status = "ACTIVE"
+            existing_mem.decision = ctx.decision
+            existing_mem.amgs_score = ctx.amgs_score
+            existing_mem.confidence = ctx.confidence
+            existing_mem.sensitivity = ctx.sensitivity
+            existing_mem.memory_category = ctx.memory_category
+            existing_mem.usefulness_lifetime = ctx.usefulness_lifetime
+            existing_mem.f_usefulness = ctx.usefulness
+            existing_mem.f_context_rel = ctx.context_relevance
+            existing_mem.f_frequency = ctx.frequency
+            existing_mem.f_novelty = ctx.novelty
+            existing_mem.f_redundancy = ctx.redundancy
+            existing_mem.f_privacy_risk = ctx.privacy_risk
+            existing_mem.f_temporal_decay = ctx.temporal_decay
+            existing_mem.expires_at = ctx.expires_at
+            existing_mem.explanation = ctx.rationale or ""
+            existing_mem.touch()
+            event = LifecycleEvent.created(
+                memory_id=existing_mem.id,
+                amgs_after=ctx.amgs_score,
+                reason="Memory restored / re-created",
+            )
+            db.add(event)
+            return existing_mem, True
+        else:
+            existing_mem.touch()
+            event = LifecycleEvent.accessed(
+                memory_id=existing_mem.id,
+                amgs_score=existing_mem.amgs_score,
+            )
+            db.add(event)
+            return existing_mem, True
 
     memory_id = str(uuid.uuid4())
 
     # ── Encrypt if required ────────────────────────────────────────────────────
-    if ctx.decision == "STORE_ENCRYPT":
+    if ctx.decision in ("STORE_ENCRYPT", "ENCRYPT_AND_STORE"):
         payload = encrypt(ctx.normalised_content)
         stored_content = "[ENCRYPTED]"
         enc_nonce = payload.nonce
@@ -186,11 +221,15 @@ async def _persist_memory(
 
     # ── Storage tier ───────────────────────────────────────────────────────────
     tier_map = {
-        "STORE_LONG_TERM": "LONG_TERM",
-        "STORE_ENCRYPT":   "LONG_TERM",
-        "STORE_TEMPORARY": "TEMPORARY",
-        "SUMMARIZE":       "SUMMARIZED",
-        "STORE":           "LONG_TERM",
+        "STORE_LONG_TERM":     "LONG_TERM",
+        "STORE_ENCRYPT":       "LONG_TERM",
+        "ENCRYPT_AND_STORE":   "LONG_TERM",
+        "STORE_TEMPORARY":     "TEMPORARY",
+        "SUMMARIZE":           "SUMMARIZED",
+        "SUMMARIZE_AND_STORE": "SUMMARIZED",
+        "STORE":               "LONG_TERM",
+        "UPDATE_EXISTING":     "LONG_TERM",
+        "MERGE_WITH_EXISTING": "LONG_TERM",
     }
     storage_tier = tier_map.get(ctx.decision, "LONG_TERM")
 
@@ -256,6 +295,104 @@ async def _get_memory_or_404(memory_id: str, db: AsyncSession) -> Memory:
 
 # ─── Endpoints ────────────────────────────────────────────────────────────────
 
+@router.get(
+    "/memory/stats",
+    summary="Aggregate dashboard statistics for all memories",
+    description="Returns counts, averages, and distribution data computed live from the memory table.",
+)
+async def get_memory_stats(db: DBSession) -> dict:
+    """Return real-time aggregate statistics for the admin dashboard."""
+    from datetime import date
+
+    today_start = datetime.combine(date.today(), datetime.min.time()).replace(tzinfo=timezone.utc)
+
+    # Total count (including forgotten, for audit)
+    total_result = await db.execute(select(func.count()).select_from(select(Memory).subquery()))
+    total_all = total_result.scalar_one() or 0
+
+    # Active
+    active_result = await db.execute(
+        select(func.count()).select_from(select(Memory).where(Memory.status == "ACTIVE").subquery())
+    )
+    active = active_result.scalar_one() or 0
+
+    # Encrypted
+    enc_result = await db.execute(
+        select(func.count()).select_from(select(Memory).where(Memory.is_encrypted == True).subquery())  # noqa: E712
+    )
+    encrypted = enc_result.scalar_one() or 0
+
+    # Forgotten
+    forg_result = await db.execute(
+        select(func.count()).select_from(select(Memory).where(Memory.status == "FORGOTTEN").subquery())
+    )
+    forgotten = forg_result.scalar_one() or 0
+
+    # Average AMGS across all non-forgotten memories
+    avg_result = await db.execute(
+        select(func.avg(Memory.amgs_score)).where(Memory.status != "FORGOTTEN")
+    )
+    avg_amgs = round(float(avg_result.scalar_one() or 0.0), 4)
+
+    # Memories added today
+    today_result = await db.execute(
+        select(func.count()).select_from(
+            select(Memory).where(Memory.created_at >= today_start).subquery()
+        )
+    )
+    memories_today = today_result.scalar_one() or 0
+
+    # Privacy score: proportion of memories that are encrypted or rejected
+    privacy_result = await db.execute(
+        select(func.count()).select_from(
+            select(Memory).where(
+                Memory.decision.in_(["STORE_ENCRYPT", "REJECT", "REJECT_PRIVACY"])
+            ).subquery()
+        )
+    )
+    privacy_handled = privacy_result.scalar_one() or 0
+    privacy_score = round(privacy_handled / total_all, 4) if total_all > 0 else 0.0
+
+    # Storage efficiency: fraction of submitted content that was stored (not rejected/forgotten)
+    stored_result = await db.execute(
+        select(func.count()).select_from(
+            select(Memory).where(
+                Memory.decision.in_(["STORE", "STORE_LONG_TERM", "STORE_ENCRYPT", "STORE_TEMPORARY", "SUMMARIZE"])
+            ).subquery()
+        )
+    )
+    stored_count = stored_result.scalar_one() or 0
+    storage_efficiency = round(stored_count / total_all, 4) if total_all > 0 else 0.0
+
+    # Decision distribution
+    dist_result = await db.execute(
+        select(Memory.decision, func.count().label("cnt"))
+        .group_by(Memory.decision)
+        .order_by(func.count().desc())
+    )
+    decision_rows = dist_result.all()
+    decision_distribution = [
+        {
+            "decision": row.decision,
+            "count": row.cnt,
+            "percentage": round((row.cnt / total_all * 100), 1) if total_all > 0 else 0.0,
+        }
+        for row in decision_rows
+    ]
+
+    return {
+        "total_memories": total_all,
+        "active_memories": active,
+        "encrypted_memories": encrypted,
+        "forgotten_memories": forgotten,
+        "avg_amgs_score": avg_amgs,
+        "privacy_score": privacy_score,
+        "storage_efficiency": storage_efficiency,
+        "memories_today": memories_today,
+        "decision_distribution": decision_distribution,
+    }
+
+
 @router.post(
     "/memory/analyze",
     response_model=AnalyzeResponse,
@@ -299,6 +436,7 @@ async def analyze_memory(
 async def submit_memory(
     body: MemoryAnalyzeRequest,
     request: Request,
+    response: Response,
     db: DBSession,
     request_id: RequestID,
 ) -> SubmitResponse:
@@ -333,8 +471,9 @@ async def submit_memory(
             )
         except Exception as exc:
             logger.error("submit.persist_failed", extra={"error": str(exc)})
+            await db.rollback()
 
-    status_code = 201 if stored else 200
+    response.status_code = status.HTTP_201_CREATED if stored else status.HTTP_200_OK
     return SubmitResponse(
         memory_id=memory_id,
         decision=ctx.decision,                                   # type: ignore[arg-type]
@@ -446,7 +585,11 @@ async def list_memories(
         stmt = stmt.where(Memory.status != "FORGOTTEN")  # default: exclude forgotten
 
     if decision:
-        stmt = stmt.where(Memory.decision == decision)
+        d_map = {
+            "STORE_ENCRYPTED": "STORE_ENCRYPT",
+            "LONG_TERM": "STORE_LONG_TERM",
+        }
+        stmt = stmt.where(Memory.decision == d_map.get(decision, decision))
     if sensitivity:
         stmt = stmt.where(Memory.sensitivity == sensitivity)
     if session_id:
@@ -642,7 +785,7 @@ async def delete_memory(memory_id: str, db: DBSession) -> None:
 
     event = LifecycleEvent.forgotten(
         memory_id=mem.id,
-        amgs_score=mem.amgs_score,
+        amgs=mem.amgs_score,
         reason="Soft-deleted via DELETE /memory/{id}",
     )
     db.add(event)

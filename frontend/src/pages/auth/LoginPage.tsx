@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Shield, Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from 'lucide-react'
+import { useAuthStore } from '@/store/authStore'
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const { login, logout, isAuthenticated, user } = useAuthStore()
   const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
   const [showPw, setShowPw]     = useState(false)
@@ -13,14 +16,30 @@ export default function LoginPage() {
 
   useEffect(() => { document.title = 'Login — AIMF' }, [])
 
+  // If URL has ?logout=true, clear any existing session; otherwise if already authenticated, redirect
+  useEffect(() => {
+    if (searchParams.get('logout') === 'true') {
+      logout()
+      return
+    }
+    if (isAuthenticated && user) {
+      navigate(user.role === 'ADMIN' ? '/dashboard' : '/chat', { replace: true })
+    }
+  }, [isAuthenticated, user, searchParams, logout, navigate])
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!email || !password) { setError('Please fill in all fields.'); return }
     setError(''); setLoading(true)
-    // Simulate auth delay — replace with real API call when backend is ready
-    await new Promise(r => setTimeout(r, 1200))
-    setLoading(false)
-    navigate('/dashboard')
+    try {
+      await login(email, password)
+      const currentUser = useAuthStore.getState().user
+      navigate(currentUser?.role === 'ADMIN' ? '/dashboard' : '/chat')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -55,6 +74,7 @@ export default function LoginPage() {
         <div className="rounded-2xl p-8"
           style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(16px)' }}>
           <form onSubmit={handleSubmit} className="space-y-5">
+
             {/* Error */}
             {error && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}

@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Shield, Mail, Lock, Eye, EyeOff, User, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react'
+import { useAuthStore } from '@/store/authStore'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
+  const { register, isAuthenticated, user } = useAuthStore()
   const [name, setName]         = useState('')
   const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
@@ -14,6 +16,12 @@ export default function RegisterPage() {
   const [error, setError]       = useState('')
 
   useEffect(() => { document.title = 'Sign Up — AIMF' }, [])
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      navigate(user.role === 'ADMIN' ? '/dashboard' : '/chat', { replace: true })
+    }
+  }, [isAuthenticated, user, navigate])
 
   const strength = password.length === 0 ? 0
     : password.length < 6 ? 1
@@ -29,9 +37,15 @@ export default function RegisterPage() {
     if (password !== confirm) { setError('Passwords do not match.'); return }
     if (password.length < 6) { setError('Password must be at least 6 characters.'); return }
     setError(''); setLoading(true)
-    await new Promise(r => setTimeout(r, 1400))
-    setLoading(false)
-    navigate('/dashboard')
+    try {
+      await register(email, password, name)
+      const currentUser = useAuthStore.getState().user
+      navigate(currentUser?.role === 'ADMIN' ? '/dashboard' : '/chat')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Registration failed')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -62,6 +76,8 @@ export default function RegisterPage() {
         <div className="rounded-2xl p-8"
           style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(16px)' }}>
           <form onSubmit={handleSubmit} className="space-y-4">
+
+
             {error && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm text-red-300"
@@ -76,7 +92,7 @@ export default function RegisterPage() {
               <div className="relative">
                 <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" />
                 <input type="text" value={name} onChange={e => setName(e.target.value)}
-                  placeholder="Suraj Meher"
+                  placeholder="Your full name"
                   className="w-full rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
                   style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
                 />

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import {
   Shield, Brain, Lock, Database, Activity,
-  Zap, Clock, Eye, CheckCircle, ArrowRight,
+  Clock, Eye, CheckCircle, ArrowRight,
   Network, Cpu, Code2, ExternalLink, BookOpen, Mail,
 } from 'lucide-react'
 
@@ -274,17 +274,6 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center py-20">
             {/* Left — text */}
             <div className="space-y-8">
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-medium text-indigo-300"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                B.Tech CSE Final Year Project — GIET University 2026
-              </motion.div>
-
               {/* Title */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -630,7 +619,6 @@ export default function LandingPage() {
               </div>
               <p className="text-sm text-slate-500 leading-relaxed max-w-sm">
                 A privacy-preserving memory management framework for intelligent AI systems.
-                Final Year B.Tech CSE Project — GIET University, 2026.
               </p>
             </div>
 
@@ -671,8 +659,7 @@ export default function LandingPage() {
           </div>
 
           <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-            <p>© 2026 Adaptive Intelligent Memory Firewall · Computer Science & Engineering · GIET University</p>
-            <p>B.Tech Final Year Project</p>
+            <p>© 2026 Adaptive Intelligent Memory Firewall · All rights reserved.</p>
           </div>
         </div>
       </footer>

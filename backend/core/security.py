@@ -22,9 +22,14 @@ from __future__ import annotations
 import base64
 import os
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 
+import bcrypt
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.exceptions import InvalidTag  # re-exported for callers
+from jose import JWTError, jwt
+
+from core.config import settings
 
 
 @dataclass(frozen=True)
@@ -56,6 +61,12 @@ def _load_key() -> bytes:
     but for research scale this is acceptable.
     """
     raw = os.environ.get("AIMF_ENCRYPTION_KEY")
+    if not raw:
+        try:
+            from core.config import settings
+            raw = getattr(settings, "encryption_key", None)
+        except Exception:
+            pass
     if not raw:
         raise RuntimeError(
             "AIMF_ENCRYPTION_KEY environment variable is not set. "
@@ -167,3 +178,73 @@ def decrypt_from_parts(ciphertext: bytes, nonce: bytes, tag: bytes) -> str:
         InvalidTag on tamper detection.
     """
     return decrypt(EncryptedPayload(ciphertext=ciphertext, nonce=nonce, tag=tag))
+
+
+# ─── Password Hashing & Verification (bcrypt) ─────────────────────────────────
+
+def hash_password(password: str) -> str:
+    """Hash a plaintext password using bcrypt with a fresh salt."""
+    pw_bytes = password.encode("utf-8")
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(pw_bytes, salt).decode("utf-8")
+
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify a plaintext password against a stored bcrypt hash."""
+    try:
+        return bcrypt.checkpw(
+            plain_password.encode("utf-8"),
+            hashed_password.encode("utf-8"),
+        )
+    except Exception:
+        return False
+
+
+# ─── JWT Token Management (python-jose) ───────────────────────────────────────
+
+def create_access_token(
+    data: dict,
+    expires_delta: timedelta | None = None,
+) -> str:
+    """
+    Generate a signed JWT access token.
+    Payload includes 'sub' (user_id), 'role', 'type': 'access', and 'exp'.
+    """
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + (
+        expires_delta
+        if expires_delta is not None
+        else timedelta(minutes=settings.jwt_expiry_minutes)
+    )
+    to_encode.update({"exp": expire, "type": "access"})
+    return jwt.encode(to_encode, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
+
+
+def create_refresh_token(
+    data: dict,
+    expires_delta: timedelta | None = None,
+) -> str:
+    """
+    Generate a signed JWT refresh token.
+    Payload includes 'sub' (user_id), 'role', 'type': 'refresh', and 'exp'.
+    """
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + (
+        expires_delta
+        if expires_delta is not None
+        else timedelta(days=settings.jwt_refresh_expiry_days)
+    )
+    to_encode.update({"exp": expire, "type": "refresh"})
+    return jwt.encode(to_encode, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
+
+
+def decode_token(token: str) -> dict:
+    """
+    Decode and validate a JWT token.
+    Raises JWTError if expired, malformed, or signature invalid.
+    """
+    return jwt.decode(
+        token,
+        settings.jwt_secret_key,
+        algorithms=[settings.jwt_algorithm],
+    )

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import clsx from 'clsx'
 
 // ─── Tabs ─────────────────────────────────────────────────────────────────────
@@ -77,13 +76,6 @@ export function Tabs({ tabs, activeTab, onChange, variant = 'line', className }:
       ))}
     </div>
   )
-}
-
-// ─── useTabs hook ─────────────────────────────────────────────────────────────
-
-export function useTabs(initial: string) {
-  const [activeTab, setActiveTab] = useState(initial)
-  return { activeTab, setActiveTab }
 }
 
 // ─── Toggle (Switch) ──────────────────────────────────────────────────────────
