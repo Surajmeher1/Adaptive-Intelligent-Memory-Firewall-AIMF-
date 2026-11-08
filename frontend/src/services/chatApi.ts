@@ -5,10 +5,8 @@
  * All requests include the JWT bearer token from the auth store.
  */
 
-import { authHeaders, useAuthStore } from '@/store/authStore'
+import { authHeaders, useAuthStore, getApiBase } from '@/store/authStore'
 import type { ChatSession, ChatSendResponse, ChatHistoryResponse } from '@/types'
-
-const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000' : '')
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -24,7 +22,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
 // ─── Session API ──────────────────────────────────────────────────────────────
 
 export async function createChatSession(title?: string): Promise<ChatSession> {
-  const res = await fetch(`${API_BASE}/api/v1/chat/sessions`, {
+  const res = await fetch(`${getApiBase()}/api/v1/chat/sessions`, {
     method: 'POST',
     headers: authHeaders(),
     body: JSON.stringify({ title: title || 'New Conversation' }),
@@ -37,14 +35,14 @@ export async function listChatSessions(
   offset = 0,
 ): Promise<ChatSession[]> {
   const params = new URLSearchParams({ limit: String(limit), offset: String(offset) })
-  const res = await fetch(`${API_BASE}/api/v1/chat/sessions?${params}`, {
+  const res = await fetch(`${getApiBase()}/api/v1/chat/sessions?${params}`, {
     headers: authHeaders(),
   })
   return handleResponse<ChatSession[]>(res)
 }
 
 export async function deleteChatSession(sessionId: string): Promise<void> {
-  const res = await fetch(`${API_BASE}/api/v1/chat/sessions/${sessionId}`, {
+  const res = await fetch(`${getApiBase()}/api/v1/chat/sessions/${sessionId}`, {
     method: 'DELETE',
     headers: authHeaders(),
   })
@@ -54,7 +52,7 @@ export async function deleteChatSession(sessionId: string): Promise<void> {
 // ─── Message API ──────────────────────────────────────────────────────────────
 
 export async function getChatHistory(sessionId: string): Promise<ChatHistoryResponse> {
-  const res = await fetch(`${API_BASE}/api/v1/chat/sessions/${sessionId}/messages`, {
+  const res = await fetch(`${getApiBase()}/api/v1/chat/sessions/${sessionId}/messages`, {
     headers: authHeaders(),
   })
   return handleResponse<ChatHistoryResponse>(res)
@@ -64,7 +62,7 @@ export async function sendChatMessage(
   sessionId: string,
   content: string,
 ): Promise<ChatSendResponse> {
-  const res = await fetch(`${API_BASE}/api/v1/chat/sessions/${sessionId}/messages`, {
+  const res = await fetch(`${getApiBase()}/api/v1/chat/sessions/${sessionId}/messages`, {
     method: 'POST',
     headers: authHeaders(),
     body: JSON.stringify({ content }),
@@ -82,7 +80,10 @@ export interface StreamCallbacks {
     rationale: string
   }) => void
   onToken?: (token: string) => void
-  onDone?: (data: { assistant_message: import('@/types').ChatMessage }) => void
+  onDone?: (data: {
+    assistant_message: import('@/types').ChatMessage
+    session_title?: string
+  }) => void
   onError?: (error: Error) => void
 }
 
@@ -92,7 +93,7 @@ export async function streamChatMessage(
   callbacks: StreamCallbacks,
   signal?: AbortSignal,
 ): Promise<void> {
-  const res = await fetch(`${API_BASE}/api/v1/chat/sessions/${sessionId}/messages/stream`, {
+  const res = await fetch(`${getApiBase()}/api/v1/chat/sessions/${sessionId}/messages/stream`, {
     method: 'POST',
     headers: {
       ...authHeaders(),

@@ -32,7 +32,7 @@ export default function MemoryLabPage() {
       const dec = data.memory.decision
       if (dec === 'REJECT_PRIVACY') {
         toast.error('Privacy violation detected: Memory rejected and NOT persisted.', { duration: 4000 })
-      } else if (dec === 'FORGET') {
+      } else if (dec === 'REJECT' || dec === 'FORGET') {
         toast('Low relevance score: Memory rejected and NOT persisted.', { icon: '🚫', duration: 3500 })
       } else if (dec === 'STORE_ENCRYPTED') {
         toast.success('Memory approved & securely encrypted in Vault!', { duration: 3500 })

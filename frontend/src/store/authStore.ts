@@ -9,7 +9,15 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { AuthUser } from '@/types'
 
-const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000' : '')
+export function getApiBase(): string {
+  if (typeof window !== 'undefined') {
+    const override = localStorage.getItem('aimf_api_url')
+    if (override && override.trim()) return override.trim().replace(/\/+$/, '')
+  }
+  return import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000' : '')
+}
+
+const API_BASE = getApiBase()
 
 /** Extract a human-readable message from FastAPI error responses. */
 function extractErrorMessage(err: unknown, status?: number): string {
@@ -91,7 +99,7 @@ export const useAuthStore = create<AuthState>()(
       login: async (email, password) => {
         set({ isLoading: true, error: null })
         try {
-          const res = await fetch(`${API_BASE}/api/v1/auth/login`, {
+          const res = await fetch(`${getApiBase()}/api/v1/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
@@ -118,7 +126,7 @@ export const useAuthStore = create<AuthState>()(
       register: async (email, password, fullName) => {
         set({ isLoading: true, error: null })
         try {
-          const res = await fetch(`${API_BASE}/api/v1/auth/register`, {
+          const res = await fetch(`${getApiBase()}/api/v1/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, full_name: fullName }),
@@ -144,7 +152,7 @@ export const useAuthStore = create<AuthState>()(
 
       logout: () => {
         try {
-          fetch(`${API_BASE}/api/v1/auth/logout`, {
+          fetch(`${getApiBase()}/api/v1/auth/logout`, {
             method: 'POST',
             headers: authHeaders(),
           }).catch(() => {})

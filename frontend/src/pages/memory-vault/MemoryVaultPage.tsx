@@ -20,7 +20,8 @@ const DECISION_OPTIONS = [
   { value: 'LONG_TERM',      label: 'Long-term'       },
   { value: 'SUMMARIZE',      label: 'Summarise'       },
   { value: 'FORGET',         label: 'Forget'          },
-  { value: 'REJECT_PRIVACY', label: 'Rejected'        },
+  { value: 'REJECT',         label: 'Rejected'        },
+  { value: 'REJECT_PRIVACY', label: 'Reject (Privacy)'},
 ]
 const SENSITIVITY_OPTIONS = [
   { value: '',         label: 'All Sensitivities' },

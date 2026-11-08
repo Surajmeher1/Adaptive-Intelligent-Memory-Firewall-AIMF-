@@ -28,6 +28,7 @@ const DECISION_CONFIG = {
   LONG_TERM:       { label: 'Long-term Store', emoji: '📌', color: 'text-cyan-300',    bg: 'bg-cyan-500/10 border-cyan-500/25'      },
   SUMMARIZE:       { label: 'Summarise',       emoji: '📝', color: 'text-amber-300',   bg: 'bg-amber-500/10 border-amber-500/25'    },
   FORGET:          { label: 'Forget',          emoji: '🗑️', color: 'text-red-300',     bg: 'bg-red-500/10 border-red-500/25'        },
+  REJECT:          { label: 'Reject',          emoji: '❌', color: 'text-rose-400',    bg: 'bg-rose-500/10 border-rose-500/25'      },
   REJECT_PRIVACY:  { label: 'Reject (Privacy)',emoji: '🚫', color: 'text-red-400',     bg: 'bg-red-500/12 border-red-500/30'        },
 } as const
 
@@ -38,7 +39,7 @@ interface AnalysisResultProps {
 export default function AnalysisResult({ result }: AnalysisResultProps) {
   const { memory, pipeline_stages, processing_time_ms } = result
   const factors = memory.factors
-  const dcfg = DECISION_CONFIG[memory.decision]
+  const dcfg = DECISION_CONFIG[memory.decision] ?? DECISION_CONFIG.REJECT
   const amgsPct = memory.amgs_score * 100
   const amgsColor = amgsPct >= 70 ? '#10b981' : amgsPct >= 40 ? '#f59e0b' : '#ef4444'
 

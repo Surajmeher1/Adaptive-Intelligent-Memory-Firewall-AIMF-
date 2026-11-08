@@ -15,7 +15,7 @@
  *   fetchAlgorithmComparison()   → static (research data, kept as mock)
  */
 
-import { authHeaders, useAuthStore } from '@/store/authStore'
+import { authHeaders, useAuthStore, getApiBase } from '@/store/authStore'
 import type {
   Memory,
   DashboardStats,
@@ -34,12 +34,8 @@ import type {
 // Re-export algorithm comparison from static mock (research baseline data)
 export { fetchAlgorithmComparison, fetchAnalyticsBreakdowns } from '@/mock/services'
 
-const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000' : '')
-
-// ─── Internal HTTP helper ──────────────────────────────────────────────────────
-
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(`${getApiBase()}${path}`, {
     ...init,
     headers: {
       ...authHeaders(),
@@ -70,7 +66,7 @@ const DECISION_MAP: Record<string, DecisionType> = {
   UPDATE_EXISTING:     'LONG_TERM',
   MERGE_WITH_EXISTING: 'LONG_TERM',
   FORGET:              'FORGET',
-  REJECT:              'REJECT_PRIVACY',
+  REJECT:              'REJECT',
   REJECT_PRIVACY:      'REJECT_PRIVACY',
 }
 
@@ -200,6 +196,7 @@ const FRONTEND_TO_BACKEND_DECISION: Record<string, string> = {
   LONG_TERM:       'STORE_LONG_TERM',
   SUMMARIZE:       'SUMMARIZE',
   FORGET:          'FORGET',
+  REJECT:          'REJECT',
   REJECT_PRIVACY:  'REJECT_PRIVACY',
 }
 
@@ -346,7 +343,7 @@ export async function analyzeMemoryContent(content: string): Promise<AnalysisRes
     confidence:      raw.confidence,
     sensitivity:     (raw.metadata.sensitivity as SensitivityLevel) ?? 'none',
     memory_category: (raw.metadata.memory_category as MemoryCategory) ?? 'factual',
-    status:          decision === 'FORGET' || decision === 'REJECT_PRIVACY' ? 'forgotten' : 'active',
+    status:          decision === 'FORGET' || decision === 'REJECT' || decision === 'REJECT_PRIVACY' ? 'forgotten' : 'active',
     is_encrypted:    rawSubmit.storage_metadata?.encrypted ?? (decision === 'STORE_ENCRYPTED'),
     created_at:      new Date().toISOString(),
     expires_at:      raw.metadata.expires_at,

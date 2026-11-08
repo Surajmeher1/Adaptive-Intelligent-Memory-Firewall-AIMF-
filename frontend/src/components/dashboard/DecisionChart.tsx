@@ -9,6 +9,7 @@ const COLORS: Record<string, string> = {
   LONG_TERM:       '#06b6d4',
   SUMMARIZE:       '#f59e0b',
   FORGET:          '#ef4444',
+  REJECT:          '#f43f5e',
   REJECT_PRIVACY:  '#dc2626',
 }
 
@@ -18,7 +19,8 @@ const LABELS: Record<string, string> = {
   LONG_TERM:       'Long-term',
   SUMMARIZE:       'Summarize',
   FORGET:          'Forget',
-  REJECT_PRIVACY:  'Rejected',
+  REJECT:          'Rejected',
+  REJECT_PRIVACY:  'Reject (Privacy)',
 }
 
 interface DecisionChartProps {

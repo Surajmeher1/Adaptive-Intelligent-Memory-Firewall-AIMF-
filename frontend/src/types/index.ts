@@ -7,6 +7,7 @@ export type DecisionType =
   | 'STORE_ENCRYPTED'
   | 'SUMMARIZE'
   | 'FORGET'
+  | 'REJECT'
   | 'REJECT_PRIVACY'
   | 'LONG_TERM'
 

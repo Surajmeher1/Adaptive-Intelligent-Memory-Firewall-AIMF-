@@ -540,24 +540,25 @@ export default function ChatBotPage() {
               )
             )
           },
-          onDone: ({ assistant_message }) => {
+          onDone: ({ assistant_message, session_title }) => {
             setMessages((prev) =>
               prev.map((m) => (m.id === assistantMsgId ? assistant_message : m))
             )
-            // Update session title in list if first message
-            const newTitle = content.slice(0, 50)
-            setSessions((prev) =>
-              prev.map((s) =>
-                s.id === session.id
-                  ? { ...s, title: newTitle, updated_at: new Date().toISOString() }
-                  : s
+            // Update session title only if a new non-generic title was assigned by backend
+            if (session_title && session_title !== 'New Conversation') {
+              setSessions((prev) =>
+                prev.map((s) =>
+                  s.id === session.id
+                    ? { ...s, title: session_title, updated_at: new Date().toISOString() }
+                    : s
+                )
               )
-            )
-            setActiveSession((prev) =>
-              prev && prev.id === session.id
-                ? { ...prev, title: newTitle, updated_at: new Date().toISOString() }
-                : prev
-            )
+              setActiveSession((prev) =>
+                prev && prev.id === session.id
+                  ? { ...prev, title: session_title, updated_at: new Date().toISOString() }
+                  : prev
+              )
+            }
           },
           onError: (err) => {
             if (err.name !== 'AbortError') {
