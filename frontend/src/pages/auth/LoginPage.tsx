@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Shield, Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from 'lucide-react'
-import { useAuthStore } from '@/store/authStore'
+import { Shield, Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle, Settings2 } from 'lucide-react'
+import { useAuthStore, getApiBase } from '@/store/authStore'
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -78,9 +78,31 @@ export default function LoginPage() {
             {/* Error */}
             {error && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm text-red-300"
+                className="space-y-2 rounded-lg p-3 text-sm text-red-300"
                 style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
-                <AlertCircle className="h-4 w-4 flex-shrink-0" /> {error}
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  <span>{error}</span>
+                </div>
+                {error.includes('Unable to connect') && (
+                  <div className="pt-2 border-t border-red-500/20 text-xs text-slate-300 flex flex-col gap-1.5">
+                    <p className="text-slate-400">Current API endpoint: <code className="text-cyan-400 break-all">{getApiBase()}</code></p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newUrl = prompt('Enter your active AIMF backend URL:', getApiBase())
+                        if (newUrl && newUrl.trim()) {
+                          localStorage.setItem('aimf_api_url', newUrl.trim())
+                          window.location.reload()
+                        }
+                      }}
+                      className="self-start inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-colors cursor-pointer"
+                    >
+                      <Settings2 className="h-3.5 w-3.5" />
+                      Change API Server URL
+                    </button>
+                  </div>
+                )}
               </motion.div>
             )}
 
