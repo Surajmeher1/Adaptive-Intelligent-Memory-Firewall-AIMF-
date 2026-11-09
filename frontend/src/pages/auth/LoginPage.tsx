@@ -84,22 +84,26 @@ export default function LoginPage() {
                   <AlertCircle className="h-4 w-4 flex-shrink-0" />
                   <span>{error}</span>
                 </div>
-                {error.includes('Unable to connect') && (
+                {(error.includes('Unable to connect') || error.includes('405') || error.includes('not reached')) && (
                   <div className="pt-2 border-t border-red-500/20 text-xs text-slate-300 flex flex-col gap-1.5">
-                    <p className="text-slate-400">Current API endpoint: <code className="text-cyan-400 break-all">{getApiBase()}</code></p>
+                    <p className="text-slate-400">Current API endpoint: <code className="text-cyan-400 break-all">{getApiBase() || '(None - requests sent to static host)'}</code></p>
                     <button
                       type="button"
                       onClick={() => {
-                        const newUrl = prompt('Enter your active AIMF backend URL:', getApiBase())
-                        if (newUrl && newUrl.trim()) {
-                          localStorage.setItem('aimf_api_url', newUrl.trim())
+                        const newUrl = prompt('Enter your active AIMF backend URL (e.g. https://...trycloudflare.com):', getApiBase())
+                        if (newUrl !== null) {
+                          if (newUrl.trim()) {
+                            localStorage.setItem('aimf_api_url', newUrl.trim())
+                          } else {
+                            localStorage.removeItem('aimf_api_url')
+                          }
                           window.location.reload()
                         }
                       }}
                       className="self-start inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-colors cursor-pointer"
                     >
                       <Settings2 className="h-3.5 w-3.5" />
-                      Change API Server URL
+                      Configure Backend URL
                     </button>
                   </div>
                 )}
@@ -150,6 +154,30 @@ export default function LoginPage() {
                 <>Login to Dashboard <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" /></>
               )}
             </button>
+
+            {/* Backend URL indicator */}
+            <div className="pt-2 flex items-center justify-between text-xs text-slate-500 border-t border-white/5">
+              <span className="truncate max-w-[240px]">
+                API: <span className="text-slate-400 font-mono">{getApiBase() || 'Not set'}</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  const newUrl = prompt('Enter your active AIMF backend URL (e.g. https://...trycloudflare.com):', getApiBase())
+                  if (newUrl !== null) {
+                    if (newUrl.trim()) {
+                      localStorage.setItem('aimf_api_url', newUrl.trim())
+                    } else {
+                      localStorage.removeItem('aimf_api_url')
+                    }
+                    window.location.reload()
+                  }
+                }}
+                className="text-indigo-400 hover:text-indigo-300 font-medium cursor-pointer ml-2"
+              >
+                Change
+              </button>
+            </div>
           </form>
         </div>
 
